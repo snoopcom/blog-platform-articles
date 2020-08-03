@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/blog-platform-articles/static/css/main.5f361e03.chunk.css",
+    "main.js": "/blog-platform-articles/static/js/main.e22a98ac.chunk.js",
+    "main.js.map": "/blog-platform-articles/static/js/main.e22a98ac.chunk.js.map",
+    "runtime-main.js": "/blog-platform-articles/static/js/runtime-main.e37e0bd0.js",
+    "runtime-main.js.map": "/blog-platform-articles/static/js/runtime-main.e37e0bd0.js.map",
+    "static/js/2.7b81950d.chunk.js": "/blog-platform-articles/static/js/2.7b81950d.chunk.js",
+    "static/js/2.7b81950d.chunk.js.map": "/blog-platform-articles/static/js/2.7b81950d.chunk.js.map",
+    "index.html": "/blog-platform-articles/index.html",
+    "precache-manifest.c734f99859fa70024ab1a3d606c6b00f.js": "/blog-platform-articles/precache-manifest.c734f99859fa70024ab1a3d606c6b00f.js",
+    "service-worker.js": "/blog-platform-articles/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/blog-platform-articles/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.7b81950d.chunk.js.LICENSE.txt": "/blog-platform-articles/static/js/2.7b81950d.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/blog-platform-articles/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e37e0bd0.js",
+    "static/js/2.7b81950d.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.e22a98ac.chunk.js"
+  ]
+}
