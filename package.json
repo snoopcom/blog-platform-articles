@@ -44,11 +44,7 @@
     "lint:fix": "npm run eslint:fix & npm run stylelint:fix"
   },
   "eslintConfig": {
-    "extends": "stylelint-config-standard",
- "processors": ["stylelint-processor-html"],
- "rules": {
- "no-empty-source": null
- }
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
