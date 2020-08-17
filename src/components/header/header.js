@@ -1,25 +1,23 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Wrapper, Item, List } from './style';
 import { isInactive } from '../../store/actions';
 
 const Header = () => {
-  const buttonReducer = useSelector((state) => state.buttonReducer);
   const dispatch = useDispatch();
 
   const handleSignUp = () => {
-    dispatch(isInactive);
-    console.log();
+    dispatch(isInactive());
   };
+
   const handleLogin = () => {
-    dispatch(isInactive);
-    console.log();
+    dispatch(isInactive());
   };
 
   return (
     <Wrapper>
-      <List disabled={buttonReducer}>
+      <List>
         <Item>
           <Link to="/signUp" onClick={handleSignUp}>
             SignUp
