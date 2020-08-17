@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Header = () => <div>Hello</div>;
+const Header = () => <div>Hello Hello</div>;
 
 export default Header;
