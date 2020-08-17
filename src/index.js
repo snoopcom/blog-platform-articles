@@ -1,9 +1,10 @@
 import React from 'react';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import ReactDOM from 'react-dom';
+import 'antd/dist/antd.css';
 import './index.scss';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import App from './components/app/app';
 import reducer from './store/reducer';
 
