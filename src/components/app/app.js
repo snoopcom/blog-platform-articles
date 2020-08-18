@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import Login from '../login/Login';
-import SignUp from '../signUp/SignUp';
+import Login from '../forms/login/Login';
+import SignUp from '../forms/signUp/SignUp';
 import Main from '../main/Main';
 import Header from '../header/header';
+import Articles from '../articles/Articles';
 import { getUser } from '../../store/actions';
-import './app.scss';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,8 @@ const App = () => {
   return (
     <HashRouter>
       <Route path="/" component={Header} />
-      <div className="App">
+      <Route path="/articles" component={Articles} />
+      <div>
         <Switch>
           <Route path="/signUp" exact component={SignUp} />
           <Route path="/" exact component={Main} />

@@ -6,15 +6,20 @@ export const Wrapper = styled.div`
   height: 80px;
 `;
 
+export const ListNavbar = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const List = styled.ul`
   display: flex;
   justify-content: space-between;
-  margin-left: auto;
+  margin-right: 0px;
   padding-right: 30px;
   padding-top: 20px;
   list-style: none;
   border: 1px red solid;
-  width: 450px;
+  width: 600px;
   height: 80px;
   text-align: ;
 `;

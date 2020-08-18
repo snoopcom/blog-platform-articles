@@ -4,6 +4,7 @@ export const baseUrl = 'https://conduit.productionready.io/api/';
 
 export const api = axios.create();
 
+/* user */
 api.interceptors.request.use((req) => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -47,3 +48,13 @@ export const signUpRequest = async (values) => {
   const response = await axios.post(url, data);
   return response;
 };
+
+/* articles */
+export const getArticlesRequest = async () => {
+  const url = `${baseUrl}articles`;
+  const response = await api.get(url);
+  console.log(response);
+  return response;
+};
+
+getArticlesRequest();
