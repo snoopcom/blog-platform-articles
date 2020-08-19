@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   background-color: #0e1621;
   color: #fff;
   height: 80px;
+  margin-bottom: 35px;
 `;
 
 export const ListNavbar = styled.div`

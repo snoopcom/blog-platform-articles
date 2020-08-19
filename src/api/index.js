@@ -53,8 +53,5 @@ export const signUpRequest = async (values) => {
 export const getArticlesRequest = async () => {
   const url = `${baseUrl}articles`;
   const response = await api.get(url);
-  console.log(response);
   return response;
 };
-
-getArticlesRequest();
