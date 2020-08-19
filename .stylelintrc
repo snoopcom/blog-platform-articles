@@ -138,7 +138,6 @@
     "no-eol-whitespace": true,
     "no-extra-semicolons": true,
     "no-invalid-double-slash-comments": true,
-    "no-missing-end-of-source-newline": true,
-    ignore: ["custom-properties"]
+    "no-missing-end-of-source-newline": true
   }
 }
