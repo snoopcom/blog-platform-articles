@@ -7,17 +7,18 @@ const Articles = () => {
   const dispatch = useDispatch();
   const articlesReduser = useSelector((state) => state.articlesReduser);
 
-  const currentArticle = articlesReduser[0];
-  let getData;
-  if (currentArticle) {
-    getData = currentArticle;
-    const { title } = getData;
-    console.log(title);
-  }
-  if (!currentArticle) {
-    getData = null;
-  }
-  console.log(getData);
+  console.log(articlesReduser);
+  // const currentArticle = articlesReduser[0];
+  // let getData;
+  // if (currentArticle) {
+  //   getData = currentArticle;
+  //   const { title } = getData;
+  //   console.log(title);
+  // }
+  // if (!currentArticle) {
+  //   getData = null;
+  // }
+  // console.log(getData);
 
   const articles = async () => {
     await dispatch(getArticles());
