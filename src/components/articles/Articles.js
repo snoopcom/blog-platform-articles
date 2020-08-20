@@ -14,8 +14,11 @@ const Articles = () => {
   const articles = useSelector((state) => state.articlesReduser);
   // const userName = useSelector((state) => state.userReducer);
 
+  console.log(articles);
+
   /* пока оставим так */
   const handleLike = (slug) => {
+    console.log(slug);
     dispatch(setFavoriteArticle(slug));
   };
 
@@ -30,7 +33,7 @@ const Articles = () => {
             tagList,
             author,
             description,
-            createdAt /* favoritesCount, favorited, */,
+            createdAt /* favoritesCount,favorited, */,
           }) => (
             <Article key={slug}>
               <h3>{title}</h3>
@@ -44,7 +47,7 @@ const Articles = () => {
               <AuthorImage src={author.image} alt="img" />
               <span>{formatDistance(new Date(createdAt), Date.now())}</span>
               <br />
-              <Like onClick={handleLike}>
+              <Like onClick={() => handleLike(slug)}>
                 <Button>like</Button>
               </Like>
             </Article>
