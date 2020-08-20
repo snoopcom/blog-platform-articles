@@ -1,6 +1,10 @@
 import { createAction } from 'redux-actions';
 import {
-  userRequest, loginRequest, signUpRequest, getArticlesRequest,
+  userRequest,
+  loginRequest,
+  signUpRequest,
+  getArticlesRequest,
+  setFavoriteRequest,
 } from '../api/index';
 
 // Функция createAction принимает тип действия
@@ -36,5 +40,12 @@ export const getArticles = () => async (dispatch) => {
   const response = await getArticlesRequest();
   const { data } = response;
   dispatch(loadArticlesList(data));
+  return response;
+};
+
+/* like */
+export const setFavoriteArticle = (slug) => async () => {
+  const response = await setFavoriteRequest(slug);
+  console.log(response);
   return response;
 };

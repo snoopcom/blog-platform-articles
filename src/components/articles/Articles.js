@@ -1,36 +1,70 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Article } from './Style';
-import { getArticles } from '../../store/actions';
+import { formatDistance } from 'date-fns';
+// import { HeartOutlined, HeartFilled } from '@ant-design/icons';
+import { Button } from 'antd';
+import {
+  Container, Article, AuthorImage, Like,
+} from './Style';
+import { getArticles, setFavoriteArticle } from '../../store/actions';
+// import Article from './Article';
 
 const Articles = () => {
   const dispatch = useDispatch();
-  const articlesReduser = useSelector((state) => state.articlesReduser);
+  const articles = useSelector((state) => state.articlesReduser);
+  // const userName = useSelector((state) => state.userReducer);
 
-  console.log(articlesReduser);
-  // const currentArticle = articlesReduser[0];
-  // let getData;
-  // if (currentArticle) {
-  //   getData = currentArticle;
-  //   const { title } = getData;
-  //   console.log(title);
-  // }
-  // if (!currentArticle) {
-  //   getData = null;
-  // }
-  // console.log(getData);
+  /* пока оставим так */
+  const handleLike = (slug) => {
+    dispatch(setFavoriteArticle(slug));
+  };
 
-  const articles = async () => {
+  /* извлекаем статьи */
+  const listArticles = (
+    <div>
+      {articles
+        ? articles.map(
+          ({
+            slug,
+            title,
+            tagList,
+            author,
+            description,
+            createdAt /* favoritesCount, favorited, */,
+          }) => (
+            <Article key={slug}>
+              <h3>{title}</h3>
+              <h4>{author.username}</h4>
+              <span>{description}</span>
+              <div>
+                {tagList.map((tag) => (
+                  <span>{tag}</span>
+                ))}
+              </div>
+              <AuthorImage src={author.image} alt="img" />
+              <span>{formatDistance(new Date(createdAt), Date.now())}</span>
+              <br />
+              <Like onClick={handleLike}>
+                <Button>like</Button>
+              </Like>
+            </Article>
+          ),
+        )
+        : null}
+    </div>
+  );
+
+  const loadArticles = async () => {
     await dispatch(getArticles());
   };
 
   useEffect(() => {
-    articles();
+    loadArticles();
   }, []);
 
   return (
     <Container>
-      <Article>Test</Article>
+      <div>{listArticles}</div>
     </Container>
   );
 };

@@ -55,3 +55,10 @@ export const getArticlesRequest = async () => {
   const response = await api.get(url);
   return response;
 };
+
+/* like */
+export const setFavoriteRequest = async (slug) => {
+  const url = `${baseUrl}articles/${slug}/favorite`;
+  const response = await api.post(url);
+  return response;
+};
