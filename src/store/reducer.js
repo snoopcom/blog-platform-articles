@@ -26,8 +26,18 @@ const articlesReduser = handleActions(
   [],
 );
 
+/* like */
+const likeReducer = handleActions(
+  {
+    [actions.setLikeArticle]: () => true,
+    [actions.unsetLikeArticle]: () => false,
+  },
+  false,
+);
+
 export default combineReducers({
   userReducer,
   buttonReducer,
   articlesReduser,
+  likeReducer,
 });

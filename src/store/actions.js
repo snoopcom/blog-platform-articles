@@ -5,6 +5,7 @@ import {
   signUpRequest,
   getArticlesRequest,
   setFavoriteRequest,
+  unsetFavoriteRequest,
 } from '../api/index';
 
 // Функция createAction принимает тип действия
@@ -16,6 +17,8 @@ export const isActive = createAction('ACTIVE_BUTTON');
 export const isInactive = createAction('OUT_BUTTON');
 
 export const loadArticlesList = createAction('LOAD_ARTICLES_LIST');
+export const setLikeArticle = createAction('SET_LIKE_ARTICLE');
+export const unsetLikeArticle = createAction('SET_LIKE_ARTICLE');
 
 /* user */
 export const getUser = () => async () => {
@@ -44,8 +47,12 @@ export const getArticles = () => async (dispatch) => {
 };
 
 /* like */
-export const setFavoriteArticle = (slug) => async () => {
-  const response = await setFavoriteRequest(slug);
-  console.log(response);
+export const setFavoriteArticle = (slug, favorited) => async () => {
+  const response = await setFavoriteRequest(slug, favorited);
+  return response;
+};
+
+export const unsetFavoriteArticle = (slug, favorited) => async () => {
+  const response = await unsetFavoriteRequest(slug, favorited);
   return response;
 };

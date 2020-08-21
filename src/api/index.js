@@ -62,3 +62,9 @@ export const setFavoriteRequest = async (slug) => {
   const response = await api.post(url);
   return response;
 };
+
+export const unsetFavoriteRequest = async (slug) => {
+  const url = `${baseUrl}articles/${slug}/favorite`;
+  const response = await api.delete(url);
+  return response;
+};

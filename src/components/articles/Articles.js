@@ -1,25 +1,41 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formatDistance } from 'date-fns';
-// import { HeartOutlined, HeartFilled } from '@ant-design/icons';
-import { Button } from 'antd';
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import {
   Container, Article, AuthorImage, Like,
 } from './Style';
-import { getArticles, setFavoriteArticle } from '../../store/actions';
+import {
+  getArticles,
+  setFavoriteArticle,
+  setLikeArticle,
+  unsetLikeArticle,
+  unsetFavoriteArticle,
+} from '../../store/actions';
 // import Article from './Article';
 
 const Articles = () => {
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articlesReduser);
-  // const userName = useSelector((state) => state.userReducer);
+  // const userReducer = useSelector((state) => state.userReducer);
 
-  console.log(articles);
+  /* проверка на авторизацию
+  const isLogged = !!userReducer.email;
+  console.log(isLogged); */
+
+  // console.log(articles);
 
   /* пока оставим так */
-  const handleLike = (slug) => {
-    console.log(slug);
-    dispatch(setFavoriteArticle(slug));
+  const handleLike = (slug, favorited) => {
+    console.log(slug, favorited);
+    if (favorited) {
+      dispatch(setFavoriteArticle(slug));
+      dispatch(setLikeArticle(favorited));
+    }
+    if (!favorited) {
+      dispatch(unsetFavoriteArticle(slug));
+      dispatch(unsetLikeArticle(false));
+    }
   };
 
   /* извлекаем статьи */
@@ -33,7 +49,9 @@ const Articles = () => {
             tagList,
             author,
             description,
-            createdAt /* favoritesCount,favorited, */,
+            createdAt,
+            favoritesCount,
+            favorited,
           }) => (
             <Article key={slug}>
               <h3>{title}</h3>
@@ -47,9 +65,11 @@ const Articles = () => {
               <AuthorImage src={author.image} alt="img" />
               <span>{formatDistance(new Date(createdAt), Date.now())}</span>
               <br />
-              <Like onClick={() => handleLike(slug)}>
-                <Button>like</Button>
+              <Like onClick={() => handleLike(slug, favorited)}>
+                {favorited ? <HeartFilled /> : <HeartOutlined />}
               </Like>
+              <br />
+              {favoritesCount}
             </Article>
           ),
         )
