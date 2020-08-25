@@ -1,21 +1,23 @@
 import React from 'react';
-// import { formatDistance } from 'date-fns';
+import { formatDistance } from 'date-fns';
+import PropTypes from 'prop-types';
 // import { useDispatch } from 'react-redux';
-import { ListArticles /* , AuthorImage */ } from './Style';
-// import Like from './Like';
+// import { uniqueId } from 'lodash';
+import { ListArticles, AuthorImage } from './Style';
+import Like from './Like';
 
-const Article = (/* { article } */) => (
+const Article = ({ article }) => {
   // const dispatch = useDispatch();
-  // const {
-  //   slug,
-  //   title,
-  //   tagList,
-  //   author,
-  //   description,
-  //   createdAt,
-  //   favoritesCount,
-  //   favorited,
-  // } = article;
+  const {
+    slug,
+    title,
+    tagList,
+    author,
+    description,
+    createdAt,
+    favoritesCount,
+    // favorited,
+  } = article;
 
   // /* пока оставим так */
   // const handleLike = (slug, favorited) => {
@@ -30,13 +32,14 @@ const Article = (/* { article } */) => (
   //   }
   // };
 
-  <ListArticles>
-    {/* <h3>{title}</h3>
+  return (
+    <ListArticles key={slug}>
+      <h3>{title}</h3>
       <h4>{author.username}</h4>
       <span>{description}</span>
       <div>
         {tagList.map((tag) => (
-          <span>{tag}</span>
+          <span key={0}>{tag}</span>
         ))}
       </div>
       <AuthorImage src={author.image} alt="img" />
@@ -44,8 +47,13 @@ const Article = (/* { article } */) => (
       <br />
       <Like article={article} />
       <br />
-      {favoritesCount} */}
-  </ListArticles>
-);
+      {favoritesCount}
+    </ListArticles>
+  );
+};
+
+Article.propTypes = {
+  article: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default Article;

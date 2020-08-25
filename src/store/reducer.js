@@ -54,10 +54,11 @@ const articlesReduser = handleActions(
 
 const likeReducer = handleActions(
   {
-    // [actions.setFavoriteSuccess]: (state, {/* payload: { article }*/ }) => {
-    //    const { slug, favorited, favoritesCount } = article;
+    [actions.loadArticlesList]: (state, { payload: articles }) => articles,
+    // [actions.setFavoriteSuccess]: (state, {payload: { article } }) => {
+    //   const { slug, favorited, favoritesCount } = article;
     //   const { articles, articlesCount } = state;
-    //   console.log(1111111111, favoritesCount, slug, articles);
+    //   console.log(state);
     //   articles.forEach((item) => {
     //     if (slug === item.slug) {
     //       item.favorited = favorited;
@@ -65,6 +66,21 @@ const likeReducer = handleActions(
     //     }
     //   });
     //   return { articles, articlesCount };
+    // },
+    // [actions.setFavoriteSuccess]: (state, { payload: { article: newArticle } }) => {
+    //   // console.log(state);
+    //   const articles = state.articles.map(article =>
+    //     (article.slug === newArticle.slug ? newArticle : article)
+    //   );
+    //   console.log(articles);
+    //   return { ...state, articles };
+    // },
+    // [actions.unsetFavoriteSuccess]: (state, { payload: { article: newArticle } }) => {
+    //   const articles = state.articles.map(article =>
+    //     (article.slug === newArticle.slug ? newArticle : article)
+    //   );
+    //   console.log(articles);
+    //   return { ...state, articles };
     // },
   },
   [],

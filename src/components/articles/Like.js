@@ -1,21 +1,28 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { HeartTwoTone } from '@ant-design/icons';
-// import {
-//   setFavoriteArticle,
-//   unsetFavoriteArticle,
-// } from '../../store/actions';
+import { setFavoriteArticle, unsetFavoriteArticle } from '../../store/actions';
 
-const Like = (/* { article } */) => (
-  // const dispatch = useDispatch();
-  // const { favorited, slug } = article;
+const Like = ({ article }) => {
+  const dispatch = useDispatch();
+  const { favorited, slug } = article;
 
-  // const setLike = () => dispatch(setFavoriteArticle(slug));
-  // const deleteLike = () => dispatch(unsetFavoriteArticle(slug));
+  const setLike = () => dispatch(setFavoriteArticle(slug));
+  const deleteLike = () => dispatch(unsetFavoriteArticle(slug));
 
-  <div>
-    <HeartTwoTone />
-  </div>
-);
+  return (
+    <div>
+      <HeartTwoTone
+        twoToneColor={favorited ? 'red' : '#52c41a'}
+        onClick={favorited ? deleteLike : setLike}
+      />
+    </div>
+  );
+};
+
+Like.propTypes = {
+  article: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default Like;

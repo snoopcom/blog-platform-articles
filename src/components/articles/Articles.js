@@ -7,13 +7,14 @@ import Article from './Article';
 const Articles = () => {
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articlesReduser);
+  // const { } = articles;
 
   const loadArticles = async () => {
     await dispatch(getArticles());
   };
 
   useEffect(() => {
-    loadArticles();
+    loadArticles({ limit: 10 });
   }, []);
   // const userReducer = useSelector((state) => state.userReducer);
 

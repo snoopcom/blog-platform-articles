@@ -24,7 +24,8 @@
       "react": {
         "pragma": "React",
         "version": "detect"
-      }
+      },
+      "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
     }
     
      

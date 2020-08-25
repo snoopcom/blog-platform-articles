@@ -76,7 +76,7 @@ export const unsetFavoriteArticle = (slug) => async (dispatch) => {
   dispatch(unsetFavoriteRequest());
   try {
     const response = await deleteFavoriteRequest(slug);
-    dispatch(unsetFavoriteArticle(response.data));
+    dispatch(unsetFavoriteSuccess(response.data));
     // console.log(response);
   } catch (error) {
     dispatch(unsetFavoriteFailure(error.response));
