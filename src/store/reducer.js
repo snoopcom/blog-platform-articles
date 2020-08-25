@@ -27,12 +27,47 @@ const articlesReduser = handleActions(
 );
 
 /* like */
+// const likeReducer = handleActions(
+//   {
+//     [actions.loadArticlesList]: (state, { payload: articles }) => {
+//       console.log(articles);
+//       return articles;
+//     },
+//     [actions.setFavoriteSuccess](
+//       state,
+//       { payload: { article } },
+//     ) {
+//       const { slug, favorited, favoritesCount } = article;
+//       const { articles, articlesCount } = state;
+//       console.log(state);
+//       articles.forEach((item) => {
+//         if (slug === item.slug) {
+//           item.favorited = favorited;
+//           item.favoritesCount = favoritesCount;
+//         }
+//       });
+//       return { articles, articlesCount };
+//     },
+//   },
+//   [],
+// );
+
 const likeReducer = handleActions(
   {
-    [actions.setLikeArticle]: () => true,
-    [actions.unsetLikeArticle]: () => false,
+    // [actions.setFavoriteSuccess]: (state, {/* payload: { article }*/ }) => {
+    //    const { slug, favorited, favoritesCount } = article;
+    //   const { articles, articlesCount } = state;
+    //   console.log(1111111111, favoritesCount, slug, articles);
+    //   articles.forEach((item) => {
+    //     if (slug === item.slug) {
+    //       item.favorited = favorited;
+    //       item.favoritesCount = favoritesCount;
+    //     }
+    //   });
+    //   return { articles, articlesCount };
+    // },
   },
-  false,
+  [],
 );
 
 export default combineReducers({

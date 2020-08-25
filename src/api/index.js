@@ -57,13 +57,13 @@ export const getArticlesRequest = async () => {
 };
 
 /* like */
-export const setFavoriteRequest = async (slug) => {
+export const addFavoriteRequest = async (slug) => {
   const url = `${baseUrl}articles/${slug}/favorite`;
   const response = await api.post(url);
   return response;
 };
 
-export const unsetFavoriteRequest = async (slug) => {
+export const deleteFavoriteRequest = async (slug) => {
   const url = `${baseUrl}articles/${slug}/favorite`;
   const response = await api.delete(url);
   return response;
