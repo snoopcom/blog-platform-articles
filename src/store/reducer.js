@@ -10,6 +10,7 @@ const userReducer = handleActions(
   },
   {},
 );
+/* button */
 const buttonReducer = handleActions(
   {
     [actions.isActive]: () => true,
@@ -21,17 +22,15 @@ const buttonReducer = handleActions(
 const initialState = {
   articles: [],
   articlesCount: 0,
-  isLoading: false,
-  params: { limit: 10 },
 };
-
 /* articles */
 const articlesReducer = handleActions(
   {
-    // /* ------------ */
+    /* ------------ */
     // [actions.setFavoriteSuccess]: (state, {
     //   payload: { article: newArticle },
     // }) => {
+    //   // console.log({ article: newArticle });
     //   const articles = state.articles.map(
     //     (article) => (article.slug === newArticle.slug ? newArticle : article),
     //   );
@@ -43,10 +42,13 @@ const articlesReducer = handleActions(
     //   );
     //   return { ...state, articles };
     // },
-    // /* ------------ */
-    // [actions.articlesSuccess]: (state, { payload: { articles, articlesCount } }) => ({
-    //   ...state, articles, articlesCount, isLoading: false,
-    // }),
+
+    /* добавили в стейт массив со статьями и счетчик статей */
+    [actions.articlesSuccess]: (state, { payload: { articles, articlesCount } }) => ({
+      articles,
+      articlesCount,
+    }),
+
     // [actions.articlesRequest](state) {
     //   return { ...state, isLoading: true };
     // },

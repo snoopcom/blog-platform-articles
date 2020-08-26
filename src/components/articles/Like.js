@@ -8,7 +8,7 @@ const Like = ({ article }) => {
   const dispatch = useDispatch();
   const { favorited, slug } = article;
 
-  const setLike = async () => dispatch(setFavoriteArticle(slug));
+  const setLike = () => dispatch(setFavoriteArticle(slug));
   const deleteLike = () => dispatch(unsetFavoriteArticle(slug));
 
   return (

@@ -42,6 +42,7 @@ export const articlesAction = () => async (dispatch) => {
   dispatch(articlesRequest());
   try {
     const response = await getArticlesRequest();
+    console.log(response);
     dispatch(articlesSuccess(response));
   } catch (error) {
     dispatch(articlesFailure(error.response));
@@ -78,6 +79,7 @@ export const setFavoriteArticle = (slug) => async (dispatch) => {
   dispatch(setFavoriteRequest());
   try {
     const response = await addFavoriteRequest(slug);
+    // console.log(response.data);
     dispatch(setFavoriteSuccess(response.data));
   } catch (error) {
     dispatch(setFavoriteFailure(error.response));
