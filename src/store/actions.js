@@ -33,6 +33,29 @@ export const unsetFavoriteRequest = createAction('UNSET_FAVORITE_REQUEST');
 export const unsetFavoriteSuccess = createAction('UNSET_FAVORITE_SUCCESS');
 export const unsetFavoriteFailure = createAction('UNSET_FAVORITE_FAILURE');
 
+export const articlesRequest = createAction('ARTICLES_REQUEST');
+export const articlesSuccess = createAction('ARTICLES_SUCCESS');
+export const articlesFailure = createAction('ARTICLES_FAILURE');
+
+/* articles */
+export const articlesAction = () => async (dispatch) => {
+  dispatch(articlesRequest());
+  try {
+    const response = await getArticlesRequest();
+    dispatch(articlesSuccess(response));
+  } catch (error) {
+    dispatch(articlesFailure(error.response));
+  }
+};
+
+// /* articles */
+// export const getArticles1 = () => async (dispatch) => {
+//   const response = await getArticlesRequest();
+//   dispatch(loadArticlesList(response));
+//   return response;
+// };
+// // getArticles1();
+
 /* user */
 export const getUser = () => async () => {
   const response = await userRequest();
@@ -50,22 +73,12 @@ export const registration = (values) => async () => {
   return response;
 };
 
-/* articles */
-export const getArticles = () => async (dispatch) => {
-  const response = await getArticlesRequest();
-  const { data } = response;
-  // console.log(data)
-  dispatch(loadArticlesList(data));
-  return response;
-};
-
 /* like */
 export const setFavoriteArticle = (slug) => async (dispatch) => {
   dispatch(setFavoriteRequest());
   try {
     const response = await addFavoriteRequest(slug);
     dispatch(setFavoriteSuccess(response.data));
-    // console.log(response);
   } catch (error) {
     dispatch(setFavoriteFailure(error.response));
     console.log(error);
@@ -77,8 +90,8 @@ export const unsetFavoriteArticle = (slug) => async (dispatch) => {
   try {
     const response = await deleteFavoriteRequest(slug);
     dispatch(unsetFavoriteSuccess(response.data));
-    // console.log(response);
   } catch (error) {
     dispatch(unsetFavoriteFailure(error.response));
+    console.log(error);
   }
 };

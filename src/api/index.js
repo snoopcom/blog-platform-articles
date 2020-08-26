@@ -49,13 +49,6 @@ export const signUpRequest = async (values) => {
   return response;
 };
 
-/* articles */
-export const getArticlesRequest = async () => {
-  const url = `${baseUrl}articles`;
-  const response = await api.get(url);
-  return response;
-};
-
 /* like */
 export const addFavoriteRequest = async (slug) => {
   const url = `${baseUrl}articles/${slug}/favorite`;
@@ -67,4 +60,11 @@ export const deleteFavoriteRequest = async (slug) => {
   const url = `${baseUrl}articles/${slug}/favorite`;
   const response = await api.delete(url);
   return response;
+};
+
+/* articles */
+export const getArticlesRequest = async () => {
+  const url = `${baseUrl}articles`;
+  const response = await api.get(url);
+  return response.data;
 };

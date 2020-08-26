@@ -1,67 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from './Style';
-import { getArticles } from '../../store/actions';
+import { articlesAction } from '../../store/actions';
 import Article from './Article';
 
 const Articles = () => {
   const dispatch = useDispatch();
-  const articles = useSelector((state) => state.articlesReduser);
-  // const { } = articles;
+  const articlesReducer = useSelector((state) => state.articlesReducer);
+  const { articles } = articlesReducer;
 
+  // console.log(articles);
   const loadArticles = async () => {
-    await dispatch(getArticles());
+    await dispatch(articlesAction());
   };
 
   useEffect(() => {
-    loadArticles({ limit: 10 });
+    loadArticles();
   }, []);
-  // const userReducer = useSelector((state) => state.userReducer);
-
-  /* проверка на авторизацию
-  const isLogged = !!userReducer.email;
-  console.log(isLogged); */
-
-  /* извлекаем статьи
-  const listArticles = (
-    <div>
-      {articles
-        ? articles.map(
-          ({
-            slug,
-            title,
-            tagList,
-            author,
-            description,
-            createdAt,
-            favoritesCount,
-            favorited,
-          }) => (
-            <Article key={slug}>
-              <h3>{title}</h3>
-              <h4>{author.username}</h4>
-              <span>{description}</span>
-              <div>
-                {tagList.map((tag) => (
-                  <span>{tag}</span>
-                ))}
-              </div>
-              <AuthorImage src={author.image} alt="img" />
-              <span>{formatDistance(new Date(createdAt), Date.now())}</span>
-              <br />
-              <Like onClick={() => handleLike(slug, favorited)}>
-                {favorited ? <HeartFilled /> : <HeartOutlined />}
-              </Like>
-              <br />
-              {favoritesCount}
-            </Article>
-
-          ),
-        )
-        : null}
-    </div>
-  );
-  */
 
   const list = articles.map((article) => <Article key={article.slug} article={article} />);
 

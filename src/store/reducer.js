@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
+import { combineReducers } from 'redux';
 import * as actions from './actions';
 
 /* user */
@@ -18,77 +18,47 @@ const buttonReducer = handleActions(
   false,
 );
 
+const initialState = {
+  articles: [],
+  articlesCount: 0,
+  isLoading: false,
+  params: { limit: 10 },
+};
+
 /* articles */
-const articlesReduser = handleActions(
+const articlesReducer = handleActions(
   {
-    [actions.loadArticlesList]: (state, { payload }) => payload.articles,
-  },
-  [],
-);
-
-/* like */
-// const likeReducer = handleActions(
-//   {
-//     [actions.loadArticlesList]: (state, { payload: articles }) => {
-//       console.log(articles);
-//       return articles;
-//     },
-//     [actions.setFavoriteSuccess](
-//       state,
-//       { payload: { article } },
-//     ) {
-//       const { slug, favorited, favoritesCount } = article;
-//       const { articles, articlesCount } = state;
-//       console.log(state);
-//       articles.forEach((item) => {
-//         if (slug === item.slug) {
-//           item.favorited = favorited;
-//           item.favoritesCount = favoritesCount;
-//         }
-//       });
-//       return { articles, articlesCount };
-//     },
-//   },
-//   [],
-// );
-
-const likeReducer = handleActions(
-  {
-    [actions.loadArticlesList]: (state, { payload: articles }) => articles,
-    // [actions.setFavoriteSuccess]: (state, {payload: { article } }) => {
-    //   const { slug, favorited, favoritesCount } = article;
-    //   const { articles, articlesCount } = state;
-    //   console.log(state);
-    //   articles.forEach((item) => {
-    //     if (slug === item.slug) {
-    //       item.favorited = favorited;
-    //       item.favoritesCount = favoritesCount;
-    //     }
-    //   });
-    //   return { articles, articlesCount };
-    // },
-    // [actions.setFavoriteSuccess]: (state, { payload: { article: newArticle } }) => {
-    //   // console.log(state);
-    //   const articles = state.articles.map(article =>
-    //     (article.slug === newArticle.slug ? newArticle : article)
+    // /* ------------ */
+    // [actions.setFavoriteSuccess]: (state, {
+    //   payload: { article: newArticle },
+    // }) => {
+    //   const articles = state.articles.map(
+    //     (article) => (article.slug === newArticle.slug ? newArticle : article),
     //   );
-    //   console.log(articles);
     //   return { ...state, articles };
     // },
     // [actions.unsetFavoriteSuccess]: (state, { payload: { article: newArticle } }) => {
-    //   const articles = state.articles.map(article =>
-    //     (article.slug === newArticle.slug ? newArticle : article)
+    //   const articles = state.articles.map(
+    //     (article) => (article.slug === newArticle.slug ? newArticle : article),
     //   );
-    //   console.log(articles);
     //   return { ...state, articles };
     // },
+    // /* ------------ */
+    // [actions.articlesSuccess]: (state, { payload: { articles, articlesCount } }) => ({
+    //   ...state, articles, articlesCount, isLoading: false,
+    // }),
+    // [actions.articlesRequest](state) {
+    //   return { ...state, isLoading: true };
+    // },
+    // [actions.articlesFailure](state) {
+    //   return { ...state, articles: [] };
+    // },
   },
-  [],
+  initialState,
 );
 
 export default combineReducers({
+  articlesReducer,
   userReducer,
   buttonReducer,
-  articlesReduser,
-  likeReducer,
 });

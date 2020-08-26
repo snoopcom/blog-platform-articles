@@ -2,7 +2,7 @@ import React from 'react';
 import { formatDistance } from 'date-fns';
 import PropTypes from 'prop-types';
 // import { useDispatch } from 'react-redux';
-// import { uniqueId } from 'lodash';
+import { uniqueId } from 'lodash';
 import { ListArticles, AuthorImage } from './Style';
 import Like from './Like';
 
@@ -39,14 +39,13 @@ const Article = ({ article }) => {
       <span>{description}</span>
       <div>
         {tagList.map((tag) => (
-          <span key={0}>{tag}</span>
+          <span key={uniqueId()}>{tag}</span>
         ))}
       </div>
       <AuthorImage src={author.image} alt="img" />
       <span>{formatDistance(new Date(createdAt), Date.now())}</span>
       <br />
       <Like article={article} />
-      <br />
       {favoritesCount}
     </ListArticles>
   );
