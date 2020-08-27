@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   border: 3px red solid;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  flex-direction: column;
+  margin: 0 auto;
 `;
 
 export const Article = styled.div`
@@ -36,4 +38,14 @@ export const ListArticles = styled.div`
   border-radius: 5px;
   width: 940px;
   height: 200px;
+`;
+
+export const Wrapper = styled.div`
+  margin: 0 auto;
+`;
+
+export const WrapperPagination = styled.div`
+  width: 450px;
+  margin: 0 auto;
+  border: 3px blue solid;
 `;
