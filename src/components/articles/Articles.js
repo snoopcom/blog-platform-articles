@@ -10,11 +10,18 @@ const Articles = () => {
   const articlesReducer = useSelector((state) => state.articlesReducer);
   // const articlesCount = useSelector((state) => state.articlesCount);
 
-  const { articles, articlesCount } = articlesReducer;
-  console.log(articlesCount);
+  const {
+    articles, articlesCount, pageSize, params,
+  } = articlesReducer;
+  // console.log(articlesCount);
   // console.log(articles);
   const loadArticles = async () => {
     await dispatch(articlesAction());
+  };
+
+  const handlePage = (page) => {
+    dispatch(articlesAction({ ...params, offset: (page - 1) * pageSize }));
+    // console.log(page);
   };
 
   useEffect(() => {
@@ -29,7 +36,12 @@ const Articles = () => {
         <div>{/* listArticles */}</div>
         <div>{list}</div>
         <WrapperPagination>
-          <Pagination total={articlesCount} defaultCurrent={1} showSizeChanger={false} />
+          <Pagination
+            total={articlesCount}
+            defaultCurrent={1}
+            showSizeChanger={false}
+            onChange={handlePage}
+          />
         </WrapperPagination>
       </Wrapper>
     </Container>

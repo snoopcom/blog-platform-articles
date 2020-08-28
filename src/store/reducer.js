@@ -22,11 +22,14 @@ const buttonReducer = handleActions(
 const initialState = {
   articles: [],
   articlesCount: 0,
+  currentPage: 1,
+  pageSize: 10,
+  params: { limit: 10 },
 };
 /* articles */
 const articlesReducer = handleActions(
   {
-    /* ------------ */
+    /* поствавить/убрать лайк */
     // [actions.setFavoriteSuccess]: (state, {
     //   payload: { article: newArticle },
     // }) => {
@@ -55,6 +58,22 @@ const articlesReducer = handleActions(
     // [actions.articlesFailure](state) {
     //   return { ...state, articles: [] };
     // },
+
+    [actions.articlesRequest](state) {
+      return { ...state, isLoading: true };
+    },
+    [actions.articlesSuccess](state, { payload: { articles, articlesCount } }) {
+      return {
+        ...state, articles, articlesCount, isLoading: false,
+      };
+    },
+    [actions.articlesFailure](state) {
+      return { ...state, articles: [] };
+    },
+
+    [actions.setArticlesParams](state, { payload: { params } }) {
+      return { ...state, params };
+    },
   },
   initialState,
 );

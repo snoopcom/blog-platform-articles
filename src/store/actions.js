@@ -37,13 +37,15 @@ export const articlesRequest = createAction('ARTICLES_REQUEST');
 export const articlesSuccess = createAction('ARTICLES_SUCCESS');
 export const articlesFailure = createAction('ARTICLES_FAILURE');
 
+export const setArticlesParams = createAction('SET_ARTICLES_PARAMS');
+
 /* articles */
-export const articlesAction = () => async (dispatch) => {
+export const articlesAction = (params) => async (dispatch) => {
   dispatch(articlesRequest());
   try {
-    const response = await getArticlesRequest();
-    console.log(response);
-    dispatch(articlesSuccess(response));
+    const response = await getArticlesRequest(params);
+    const { articles, articlesCount } = response;
+    dispatch(articlesSuccess({ articles, articlesCount }));
   } catch (error) {
     dispatch(articlesFailure(error.response));
   }
