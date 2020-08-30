@@ -38,6 +38,7 @@ export const articlesSuccess = createAction('ARTICLES_SUCCESS');
 export const articlesFailure = createAction('ARTICLES_FAILURE');
 
 export const setArticlesParams = createAction('SET_ARTICLES_PARAMS');
+export const changePage = createAction('CHANGE_CURRENT_PAGE');
 
 /* articles */
 export const articlesAction = (params) => async (dispatch) => {
@@ -49,6 +50,10 @@ export const articlesAction = (params) => async (dispatch) => {
   } catch (error) {
     dispatch(articlesFailure(error.response));
   }
+};
+
+export const changePageAction = (pageNumber) => async (dispatch) => {
+  dispatch(changePage({ pageNumber }));
 };
 
 // /* articles */

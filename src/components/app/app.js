@@ -6,6 +6,7 @@ import SignUp from '../forms/signUp/SignUp';
 import Main from '../main/Main';
 import Header from '../header/header';
 import Articles from '../articles/Articles';
+import CreateArticle from '../createArticle/CreateArticle';
 import { getUser } from '../../store/actions';
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
     <HashRouter>
       <Route path="/" component={Header} />
       <Route path="/articles" component={Articles} />
+      <Route path="/add" component={CreateArticle} />
       <div>
         <Switch>
           <Route path="/signUp" exact component={SignUp} />

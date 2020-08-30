@@ -29,7 +29,16 @@ const initialState = {
 /* articles */
 const articlesReducer = handleActions(
   {
-    /* поствавить/убрать лайк */
+    /* добавили в стейт массив со статьями и счетчик статей */
+    [actions.articlesSuccess]: (state, { payload: { articles, articlesCount } }) => ({
+      ...state,
+      articles,
+      articlesCount,
+    }),
+    [actions.articlesFailure]: (state) => ({ ...state, articles: [] }),
+    [actions.setArticlesParams]: (state, { payload: { params } }) => ({ ...state, params }),
+
+    // /* поствавить/убрать лайк */
     // [actions.setFavoriteSuccess]: (state, {
     //   payload: { article: newArticle },
     // }) => {
@@ -46,11 +55,10 @@ const articlesReducer = handleActions(
     //   return { ...state, articles };
     // },
 
-    /* добавили в стейт массив со статьями и счетчик статей */
-    [actions.articlesSuccess]: (state, { payload: { articles, articlesCount } }) => ({
-      articles,
-      articlesCount,
-    }),
+    // [actions.articlesSuccess]: (state, { payload: { articles, articlesCount } }) => ({
+    //   articles,
+    //   articlesCount,
+    // }),
 
     // [actions.articlesRequest](state) {
     //   return { ...state, isLoading: true };
@@ -59,27 +67,27 @@ const articlesReducer = handleActions(
     //   return { ...state, articles: [] };
     // },
 
-    [actions.articlesRequest](state) {
-      return { ...state, isLoading: true };
-    },
-    [actions.articlesSuccess](state, { payload: { articles, articlesCount } }) {
-      return {
-        ...state, articles, articlesCount, isLoading: false,
-      };
-    },
-    [actions.articlesFailure](state) {
-      return { ...state, articles: [] };
-    },
-
-    [actions.setArticlesParams](state, { payload: { params } }) {
-      return { ...state, params };
-    },
+    // [actions.articlesRequest](state) {
+    //   return { ...state, isLoading: true };
+    // },
   },
   initialState,
+);
+
+const initialState2 = { currentPage: 1, pageSize: 10 };
+
+const pageSettingsReducer = handleActions(
+  {
+    [actions.changePage](state, { payload: { pageNumber } }) {
+      return { ...state, currentPage: pageNumber };
+    },
+  },
+  initialState2,
 );
 
 export default combineReducers({
   articlesReducer,
   userReducer,
   buttonReducer,
+  pageSettingsReducer,
 });
