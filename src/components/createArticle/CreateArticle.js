@@ -1,27 +1,33 @@
 import React from 'react';
 import { Formik } from 'formik';
+// import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   Form, Input, Table, SubmitButton, AddRowButton, RemoveRowButton,
 } from 'formik-antd';
 import { FileAddOutlined, TagOutlined, DeleteOutlined } from '@ant-design/icons';
 import Container from './Style';
+// import { addArticleAction } from '../../store/actions';
 
 const initialValues = {
   title: '',
   description: '',
   body: '',
-  tagList: [],
+  tagList: [''],
 };
 
 const CreateArticle = () => {
+  // const dispatch = useDispatch()
+  const history = useHistory();
   // const handleClickButton = () => {
-  console.log('test');
   // };
-
-  // const a = 1;
+  const articleSubmit = async (/* values */) => {
+    // await addArticleAction(values);
+    history.push('/login');
+  };
 
   return (
-    <Formik initialValues={initialValues}>
+    <Formik initialValues={initialValues} onSubmit={articleSubmit}>
       <Container>
         <Form>
           <h1>Создать новую статью</h1>
@@ -94,6 +100,7 @@ const CreateArticle = () => {
             </div>
           </div>
           <div>
+            <br />
             <SubmitButton
               loading={false}
               disabled={false}

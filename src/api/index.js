@@ -68,3 +68,12 @@ export const getArticlesRequest = async (params) => {
   const response = await api.get(url, { params });
   return response.data;
 };
+
+/* test-add */
+export const addArticle = async (articleInfo) => {
+  const response = await api.post('/articles', { article: articleInfo });
+  const {
+    data: { article },
+  } = response;
+  return article;
+};
