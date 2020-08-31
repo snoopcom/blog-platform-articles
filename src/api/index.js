@@ -69,11 +69,18 @@ export const getArticlesRequest = async (params) => {
   return response.data;
 };
 
-/* test-add */
-export const addArticle = async (articleInfo) => {
-  const response = await api.post('/articles', { article: articleInfo });
-  const {
-    data: { article },
-  } = response;
-  return article;
+/* article */
+export const getOneArticleRequest = async (slug) => {
+  const url = `${baseUrl}articles/${slug}`;
+  const response = api.get(url);
+  // console.log(response);
+  return response;
+};
+
+/* add article */
+export const addArticle = async (values) => {
+  const url = `${baseUrl}articles`;
+  const response = await api.post(url, values);
+  console.log(response);
+  return response;
 };

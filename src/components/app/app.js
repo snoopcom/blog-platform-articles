@@ -5,6 +5,7 @@ import Login from '../forms/login/Login';
 import SignUp from '../forms/signUp/SignUp';
 import Main from '../main/Main';
 import Header from '../header/header';
+import Article from '../articles/Article';
 import Articles from '../articles/Articles';
 import CreateArticle from '../createArticle/CreateArticle';
 import { getUser } from '../../store/actions';
@@ -27,6 +28,7 @@ const App = () => {
       <Route path="/" component={Header} />
       <Route path="/articles" component={Articles} />
       <Route path="/add" component={CreateArticle} />
+      <Route path="/articles/:slug" component={Article} />
       <div>
         <Switch>
           <Route path="/signUp" exact component={SignUp} />

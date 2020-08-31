@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Pagination } from 'antd';
 import { Container, Wrapper, WrapperPagination } from './Style';
 import { articlesAction, changePageAction } from '../../store/actions';
-import Article from './Article';
+import Article from './ListArticles';
 
 const Articles = () => {
   const dispatch = useDispatch();

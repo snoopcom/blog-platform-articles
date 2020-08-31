@@ -1,13 +1,18 @@
 // import axios from 'axios';
 import { createAction } from 'redux-actions';
+// import { useHistory } from 'react-router-dom';
 import {
   userRequest,
   loginRequest,
   signUpRequest,
   getArticlesRequest,
   addFavoriteRequest,
-  deleteFavoriteRequest /* addArticle, */,
+  deleteFavoriteRequest,
+  addArticle,
+  getOneArticleRequest,
 } from '../api/index';
+
+// const history = useHistory();
 
 // Функция createAction принимает тип действия
 // (свойство type) и возвращает функцию, принимающую payload
@@ -125,15 +130,24 @@ export const unsetFavoriteArticle = (slug) => async (dispatch) => {
   }
 };
 
-// /* test */
-// export const addArticleAction = (body) => async (dispatch) => {
-//   // dispatch(addArticleRequest());
-//   try {
-//     const response = await addArticle(body);
-//     // dispatch(addArticleSuccess({ article }));
-//     // history.push('/articles');
-//     return response;
-//   } catch (err) {
-//     // dispatch(addArticleFailure(err.response));
-//   }
-// };
+/* add article */
+export const addArticleAction = async (body) => {
+  // dispatch(addArticleRequest());
+  try {
+    await addArticle(body);
+    // dispatch(addArticleSuccess({ article }));
+    // history.push('/articles');
+    // return response;
+  } catch (error) {
+    // dispatch(addArticleFailure(err.response));
+  }
+};
+
+/* get one article */
+export const addOneArticleAction = async (slug) => {
+  try {
+    await getOneArticleRequest(slug);
+  } catch (error) {
+    console.log(error);
+  }
+};

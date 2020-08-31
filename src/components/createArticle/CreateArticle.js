@@ -7,7 +7,7 @@ import {
 } from 'formik-antd';
 import { FileAddOutlined, TagOutlined, DeleteOutlined } from '@ant-design/icons';
 import Container from './Style';
-// import { addArticleAction } from '../../store/actions';
+import { addArticleAction } from '../../store/actions';
 
 const initialValues = {
   title: '',
@@ -21,9 +21,9 @@ const CreateArticle = () => {
   const history = useHistory();
   // const handleClickButton = () => {
   // };
-  const articleSubmit = async (/* values */) => {
-    // await addArticleAction(values);
-    history.push('/login');
+  const articleSubmit = async (values) => {
+    await addArticleAction(values);
+    history.push('/articles');
   };
 
   return (
