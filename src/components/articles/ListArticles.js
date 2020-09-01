@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 import { uniqueId } from 'lodash';
-import { ListArticles, AuthorImage } from './Style';
+import { AllListArticles, AuthorImage } from './Style';
 import Like from './Like';
 import { addOneArticleAction } from '../../store/actions';
 
-const allListArticles = ({ article }) => {
+const ListArticles = ({ article }) => {
   // const dispatch = useDispatch();
 
   const {
@@ -22,31 +22,22 @@ const allListArticles = ({ article }) => {
     // favorited,
   } = article;
 
-  // /* пока оставим так */
-  // const handleLike = (slug, favorited) => {
-  //   // console.log(slug, favorited);
-  //   if (favorited) {
-  //     dispatch(unsetFavoriteArticle(slug));
-  //     dispatch(unsetLikeArticle(false));
-  //   }
-  //   if (!favorited) {
-  //     dispatch(setFavoriteArticle(slug));
-  //     dispatch(setLikeArticle(favorited));
-  //   }
-  // };
+  // console.log(tagList);
+
   const handleTest = (data) => {
     // console.log(slug);
     addOneArticleAction(data);
   };
 
   return (
-    <ListArticles key={slug}>
+    <AllListArticles key={slug}>
       <NavLink to={`/articles/${slug}`} onClick={() => handleTest(slug)}>
         <h3>{title}</h3>
       </NavLink>
       <h4>{author.username}</h4>
       <span>{description}</span>
       <div>
+        Теги:
         {tagList.map((tag) => (
           <span key={uniqueId()}>{tag}</span>
         ))}
@@ -56,12 +47,12 @@ const allListArticles = ({ article }) => {
       <br />
       <Like article={article} />
       {favoritesCount}
-    </ListArticles>
+    </AllListArticles>
   );
 };
 
-allListArticles.propTypes = {
+ListArticles.propTypes = {
   article: PropTypes.instanceOf(Object).isRequired,
 };
 
-export default allListArticles;
+export default ListArticles;

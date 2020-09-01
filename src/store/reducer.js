@@ -74,7 +74,7 @@ const articlesReducer = handleActions(
   initialState,
 );
 
-const initialState2 = { currentPage: 1, pageSize: 10 };
+const initialState2 = { currentPage: 1, pageSize: 10 }; // поменять название!!!
 
 const pageSettingsReducer = handleActions(
   {

@@ -8,6 +8,7 @@ import Header from '../header/header';
 import Article from '../articles/Article';
 import Articles from '../articles/Articles';
 import CreateArticle from '../createArticle/CreateArticle';
+import EditArticle from '../editArticle/EditArticle';
 import { getUser } from '../../store/actions';
 
 const App = () => {
@@ -26,9 +27,10 @@ const App = () => {
   return (
     <HashRouter>
       <Route path="/" component={Header} />
-      <Route path="/articles" component={Articles} />
+      <Route path="/articles" exact component={Articles} />
       <Route path="/add" component={CreateArticle} />
-      <Route path="/articles/:slug" component={Article} />
+      <Route path="/articles/:slug" exact component={Article} />
+      <Route path="/articles/:slug/edit" exact component={EditArticle} />
       <div>
         <Switch>
           <Route path="/signUp" exact component={SignUp} />

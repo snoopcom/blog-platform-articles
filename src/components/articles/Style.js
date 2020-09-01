@@ -8,7 +8,7 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
-export const Article = styled.div`
+export const ItemArticle = styled.div`
   /* display: flex;
   justify-content: center; */
   margin-bottom: 10px;
@@ -32,7 +32,7 @@ export const AuthorImage = styled.img`
 //   }
 // `;
 
-export const ListArticles = styled.div`
+export const AllListArticles = styled.div`
   margin-bottom: 10px;
   background-color: #fff;
   border-radius: 5px;

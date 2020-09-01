@@ -67,7 +67,9 @@ const Header = () => {
   const userProfile = (
     <List>
       <Item>
-        <Button>Create Article</Button>
+        <Link to="/add">
+          <Button>Create Article</Button>
+        </Link>
       </Item>
       <Item>{email}</Item>
       <Item>

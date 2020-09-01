@@ -78,9 +78,22 @@ export const getOneArticleRequest = async (slug) => {
 };
 
 /* add article */
-export const addArticle = async (values) => {
+export const addArticleRequest = async (values) => {
   const url = `${baseUrl}articles`;
   const response = await api.post(url, values);
-  console.log(response);
+  return response;
+};
+
+/* edit article */
+export const editArticleRequest = async (values, slug) => {
+  const url = `${baseUrl}articles/${slug}`;
+  const response = await api.put(url, values);
+  return response;
+};
+
+/* delete article */
+export const deleteArticleRequest = async (slug) => {
+  const url = `${baseUrl}articles/${slug}`;
+  const response = await api.delete(url);
   return response;
 };

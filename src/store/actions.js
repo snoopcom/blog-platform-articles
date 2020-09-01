@@ -8,8 +8,10 @@ import {
   getArticlesRequest,
   addFavoriteRequest,
   deleteFavoriteRequest,
-  addArticle,
+  addArticleRequest,
   getOneArticleRequest,
+  editArticleRequest,
+  deleteArticleRequest,
 } from '../api/index';
 
 // const history = useHistory();
@@ -131,10 +133,10 @@ export const unsetFavoriteArticle = (slug) => async (dispatch) => {
 };
 
 /* add article */
-export const addArticleAction = async (body) => {
+export const addArticleAction = async (article) => {
   // dispatch(addArticleRequest());
   try {
-    await addArticle(body);
+    await addArticleRequest({ article });
     // dispatch(addArticleSuccess({ article }));
     // history.push('/articles');
     // return response;
@@ -147,6 +149,24 @@ export const addArticleAction = async (body) => {
 export const addOneArticleAction = async (slug) => {
   try {
     await getOneArticleRequest(slug);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/* edit article */
+export const editArticleAction = async (values, slug) => {
+  try {
+    await editArticleRequest(values, slug);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/* delete article */
+export const deleteArticleAction = async (slug) => {
+  try {
+    await deleteArticleRequest(slug);
   } catch (error) {
     console.log(error);
   }

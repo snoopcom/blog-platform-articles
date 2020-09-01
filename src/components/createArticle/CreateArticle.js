@@ -13,7 +13,7 @@ const initialValues = {
   title: '',
   description: '',
   body: '',
-  tagList: [''],
+  tagList: [],
 };
 
 const CreateArticle = () => {
