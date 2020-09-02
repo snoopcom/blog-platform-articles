@@ -21,7 +21,7 @@ const EditArticle = () => {
 
   const handleSubmit = async (values) => {
     await editArticleAction(values, slug);
-    history.push('/articles');
+    history.push('/');
   };
 
   return (

@@ -23,7 +23,7 @@ const CreateArticle = () => {
   // };
   const articleSubmit = async (values) => {
     await addArticleAction(values);
-    history.push('/articles');
+    history.push('/');
   };
 
   return (

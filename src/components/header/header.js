@@ -1,15 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import {
   Wrapper, Item, List, ListNavbar,
 } from './style';
-import { isInactive, logOutAction } from '../../store/actions';
+import { isInactive, logOutAction, articlesAction } from '../../store/actions';
 import logoUser from '../../img/logoUser.png';
 
 const Header = () => {
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
   const userReducer = useSelector((state) => state.userReducer);
 
@@ -42,9 +42,10 @@ const Header = () => {
   const handleExit = () => {
     dispatch(isInactive());
     dispatch(logOutAction());
+    dispatch(articlesAction());
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    history.push('/articles');
+    // history.push('/');
   };
 
   /* login/signUp */

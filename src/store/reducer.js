@@ -7,6 +7,7 @@ const userReducer = handleActions(
   {
     [actions.logOutAction]: () => {},
     [actions.logAction]: (state, action) => action.payload,
+    [actions.userData]: (state, action) => action.payload,
   },
   {},
 );
@@ -38,38 +39,17 @@ const articlesReducer = handleActions(
     [actions.articlesFailure]: (state) => ({ ...state, articles: [] }),
     [actions.setArticlesParams]: (state, { payload: { params } }) => ({ ...state, params }),
 
-    // /* поствавить/убрать лайк */
-    // [actions.setFavoriteSuccess]: (state, {
-    //   payload: { article: newArticle },
-    // }) => {
-    //   // console.log({ article: newArticle });
-    //   const articles = state.articles.map(
-    //     (article) => (article.slug === newArticle.slug ? newArticle : article),
-    //   );
-    //   return { ...state, articles };
-    // },
-    // [actions.unsetFavoriteSuccess]: (state, { payload: { article: newArticle } }) => {
-    //   const articles = state.articles.map(
-    //     (article) => (article.slug === newArticle.slug ? newArticle : article),
-    //   );
-    //   return { ...state, articles };
-    // },
-
-    // [actions.articlesSuccess]: (state, { payload: { articles, articlesCount } }) => ({
-    //   articles,
-    //   articlesCount,
-    // }),
-
-    // [actions.articlesRequest](state) {
-    //   return { ...state, isLoading: true };
-    // },
-    // [actions.articlesFailure](state) {
-    //   return { ...state, articles: [] };
-    // },
-
-    // [actions.articlesRequest](state) {
-    //   return { ...state, isLoading: true };
-    // },
+    /* поствавить/убрать лайк */
+    [actions.setFavoriteSuccess]: (state, { payload: { article: newArticle } }) => {
+      const { articles } = state;
+      const res = articles.map((item) => (item.slug === newArticle.slug ? newArticle : item));
+      return { ...state, res };
+    },
+    [actions.unsetFavoriteSuccess]: (state, { payload: { article: newArticle } }) => {
+      const { articles } = state;
+      const res = articles.map((item) => (item.slug === newArticle.slug ? newArticle : item));
+      return { ...state, res };
+    },
   },
   initialState,
 );

@@ -13,6 +13,7 @@ const Article = () => {
   const articlesReducer = useSelector((state) => state.articlesReducer);
 
   const userReducer = useSelector((state) => state.userReducer);
+  const { username } = userReducer;
 
   const { articles } = articlesReducer;
   const currentArticle = articles.find((article) => article.slug === slug);
@@ -29,7 +30,7 @@ const Article = () => {
 
   const handleDelete = async (values) => {
     await deleteArticleAction(values);
-    history.push('/articles');
+    history.push('/');
   };
 
   const EditArticle = (
@@ -47,7 +48,7 @@ const Article = () => {
     </Popconfirm>
   );
 
-  let loginControl = (
+  const loginControl = (
     <div>
       {EditArticle}
       {' '}
@@ -55,28 +56,15 @@ const Article = () => {
     </div>
   );
 
-  /* проверка на авторизацию */
-  let { email } = userReducer;
-  let data;
-
-  try {
-    data = JSON.parse(localStorage.getItem('user'));
-    if (email === undefined) {
-      email = data.email;
-    }
-  } catch (error) {
-    if (data === null) {
-      loginControl = null;
-    }
-  }
-
   return (
     <Container>
       <ItemArticle>
         <Like article={currentArticle} />
+        {console.log(username)}
+        {console.log(author.username)}
         {favoritesCount}
         <h2>{title}</h2>
-        {loginControl}
+        {username === author.username ? loginControl : null}
         Теги:
         {' '}
         {tagList}

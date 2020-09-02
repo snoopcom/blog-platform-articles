@@ -20,6 +20,7 @@ import {
 // (свойство type) и возвращает функцию, принимающую payload
 
 /* user */
+export const userData = createAction('USER_DATA');
 export const logAction = createAction('LOGIN_USER');
 export const logOutAction = createAction('LOGOUT_USER');
 
@@ -92,8 +93,10 @@ export const changePageAction = (pageNumber) => async (dispatch) => {
 // // getArticles1();
 
 /* user */
-export const getUser = () => async () => {
+export const getUser = () => async (dispatch) => {
   const response = await userRequest();
+  dispatch(userData(response.data.user));
+  // console.log(response.data.user);
   localStorage.setItem('user', JSON.stringify(response.data.user));
   return response;
 };

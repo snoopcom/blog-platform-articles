@@ -5,7 +5,7 @@ import { Form, Input, SubmitButton } from 'formik-antd';
 import { MailOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  authorization, logAction, isActive, isInactive,
+  authorization, logAction, isActive, isInactive, userData,
 } from '../../../store/actions';
 import validationSchema from './ValidationSchema';
 import '../Style.scss';
@@ -23,14 +23,19 @@ const Login = () => {
 
   const onSubmit = async (values) => {
     try {
-      dispatch(isActive());
-      dispatch(logAction(values));
       const response = await dispatch(authorization(values));
+
+      if (response.request.status === 200) {
+        dispatch(userData(response.data.user));
+        dispatch(isActive());
+        dispatch(logAction(values));
+      }
+
       const { token } = response.data.user;
       localStorage.setItem('token', `${token}`);
       // сделал, чтобы при удалении стореджа и перезагрузке страницы не вылетало со страницы main
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      history.push('/articles');
+      history.push('/');
     } catch (error) {
       if (error.request.status === 422) {
         dispatch(isInactive());
