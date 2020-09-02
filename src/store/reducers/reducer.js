@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
-import * as actions from './actions';
+import * as actions from '../actions';
 
 /* user */
 const userReducer = handleActions(
@@ -47,22 +47,6 @@ const articlesReducer = handleActions(
       const articles = state.articles.map((item) => (item.slug === newItem.slug ? newItem : item));
       return { ...state, articles };
     },
-
-    // [actions.articlesSuccess]: (state, { payload: { articles, articlesCount } }) => ({
-    //   articles,
-    //   articlesCount,
-    // }),
-
-    // [actions.articlesRequest](state) {
-    //   return { ...state, isLoading: true };
-    // },
-    // [actions.articlesFailure](state) {
-    //   return { ...state, articles: [] };
-    // },
-
-    // [actions.articlesRequest](state) {
-    //   return { ...state, isLoading: true };
-    // },
   },
   initialState,
 );

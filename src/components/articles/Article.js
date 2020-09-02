@@ -12,8 +12,8 @@ const Article = () => {
   const { slug } = useParams();
   const articlesReducer = useSelector((state) => state.articlesReducer);
 
-  const userReducer = useSelector((state) => state.userReducer);
-  const { username } = userReducer;
+  const dataUserReducer = useSelector((state) => state.dataUserReducer);
+  const { username } = dataUserReducer;
 
   const { articles } = articlesReducer;
   const currentArticle = articles.find((article) => article.slug === slug);

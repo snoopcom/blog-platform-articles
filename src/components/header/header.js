@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Button } from 'antd';
 import {
   Wrapper, Item, List, ListNavbar,
 } from './style';
@@ -40,7 +39,7 @@ const Header = () => {
   };
 
   const handleExit = () => {
-    dispatch(isInactive());
+    // dispatch(isInactive());
     dispatch(logOutAction());
     dispatch(articlesAction());
     localStorage.removeItem('user');
@@ -68,16 +67,14 @@ const Header = () => {
   const userProfile = (
     <List>
       <Item>
-        <Link to="/add">
-          <Button>Create Article</Button>
-        </Link>
+        <Link to="/add">Create Article</Link>
       </Item>
       <Item>{email}</Item>
       <Item>
         <img src={logoUser} alt="logo user" />
       </Item>
       <Item>
-        <Button onClick={handleExit}>Log Out</Button>
+        <Link onClick={handleExit}>Log Out</Link>
       </Item>
     </List>
   );

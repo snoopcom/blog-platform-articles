@@ -18,14 +18,17 @@ const initialValues = {
 
 const Login = () => {
   const buttonReducer = useSelector((state) => state.buttonReducer);
+  // const dataUserReducer = useSelector((state) => state.dataUserReducer);
   const dispatch = useDispatch();
   const history = useHistory();
+  // const { username } = dataUserReducer;
 
   const onSubmit = async (values) => {
     try {
       const response = await dispatch(authorization(values));
 
       if (response.request.status === 200) {
+        // console.log(username);
         dispatch(userData(response.data.user));
         dispatch(isActive());
         dispatch(logAction(values));
