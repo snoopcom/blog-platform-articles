@@ -8,6 +8,18 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
+export const ArticleContainer = styled.div`
+  display: flex;
+  width: 250px;
+  /* border: 3px red solid; */
+  padding-top: 15px;
+  padding-left: 20px;
+`;
+
+export const Title = styled.h3`
+  color: #0f3cbb;
+`;
+
 export const ItemArticle = styled.div`
   /* display: flex;
   justify-content: center; */
@@ -22,15 +34,14 @@ export const AuthorImage = styled.img`
   width: 50px;
 `;
 
-// export const Like = styled.button`
-//   background-color: transparent;
-//   border: none;
-//   cursor: pointer;
-//   padding: 0;
-//   :focus {
-//     outline: none;
-//   }
-// `;
+export const LikeContainer = styled.div`
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 25px;
+  /* border: 1px red solid; */
+  padding-top: 2px;
+`;
 
 export const AllListArticles = styled.div`
   margin-bottom: 10px;

@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 import { uniqueId } from 'lodash';
-import { AllListArticles, AuthorImage } from './Style';
+import {
+  AllListArticles, ArticleContainer, AuthorImage, Title, LikeContainer,
+} from './Style';
 import Like from './Like';
 import { addOneArticleAction } from '../../store/actions';
 
@@ -31,9 +33,16 @@ const ListArticles = ({ article }) => {
 
   return (
     <AllListArticles key={slug}>
-      <NavLink to={`/articles/${slug}`} onClick={() => handleTest(slug)}>
-        <h3>{title}</h3>
-      </NavLink>
+      <ArticleContainer>
+        <NavLink to={`/articles/${slug}`} onClick={() => handleTest(slug)}>
+          <Title>{title}</Title>
+        </NavLink>
+        <LikeContainer>
+          <Like article={article} />
+          {favoritesCount}
+        </LikeContainer>
+      </ArticleContainer>
+
       <h4>{author.username}</h4>
       <span>{description}</span>
       <div>
@@ -45,8 +54,6 @@ const ListArticles = ({ article }) => {
       <AuthorImage src={author.image} alt="img" />
       <span>{formatDistance(new Date(createdAt), Date.now())}</span>
       <br />
-      <Like article={article} />
-      {favoritesCount}
     </AllListArticles>
   );
 };
