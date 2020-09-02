@@ -7,7 +7,6 @@ const userReducer = handleActions(
   {
     [actions.logOutAction]: () => {},
     [actions.logAction]: (state, action) => action.payload,
-    [actions.userData]: (state, action) => action.payload,
   },
   {},
 );
@@ -40,16 +39,30 @@ const articlesReducer = handleActions(
     [actions.setArticlesParams]: (state, { payload: { params } }) => ({ ...state, params }),
 
     /* поствавить/убрать лайк */
-    [actions.setFavoriteSuccess]: (state, { payload: { article: newArticle } }) => {
-      const { articles } = state;
-      const res = articles.map((item) => (item.slug === newArticle.slug ? newArticle : item));
-      return { ...state, res };
+    [actions.setFavoriteSuccess]: (state, { payload: { article: newItem } }) => {
+      const articles = state.articles.map((item) => (item.slug === newItem.slug ? newItem : item));
+      return { ...state, articles };
     },
-    [actions.unsetFavoriteSuccess]: (state, { payload: { article: newArticle } }) => {
-      const { articles } = state;
-      const res = articles.map((item) => (item.slug === newArticle.slug ? newArticle : item));
-      return { ...state, res };
+    [actions.unsetFavoriteSuccess]: (state, { payload: { article: newItem } }) => {
+      const articles = state.articles.map((item) => (item.slug === newItem.slug ? newItem : item));
+      return { ...state, articles };
     },
+
+    // [actions.articlesSuccess]: (state, { payload: { articles, articlesCount } }) => ({
+    //   articles,
+    //   articlesCount,
+    // }),
+
+    // [actions.articlesRequest](state) {
+    //   return { ...state, isLoading: true };
+    // },
+    // [actions.articlesFailure](state) {
+    //   return { ...state, articles: [] };
+    // },
+
+    // [actions.articlesRequest](state) {
+    //   return { ...state, isLoading: true };
+    // },
   },
   initialState,
 );
