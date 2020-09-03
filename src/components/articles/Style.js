@@ -6,10 +6,6 @@ export const Container = styled.div`
   /* justify-content: center; */
   flex-direction: column;
   margin: 0 auto;
-  /* width: 80%;
-  max-width: 550px;
-  margin: 3em auto;
-  padding: 1em; */
 `;
 
 export const AllListArticles = styled.div`
@@ -35,7 +31,7 @@ export const Header = styled.div`
 
 export const ArticleContainer = styled.div`
   display: flex;
-  width: 225px;
+  width: 360px;
   /* border: 3px blue solid;  */
   padding-top: 10px;
   padding-left: 20px;
@@ -44,10 +40,18 @@ export const ArticleContainer = styled.div`
 export const DataUser = styled.div`
   /* border: 1px blue solid; */
   width: 160px;
+  text-align: center;
+  padding-top: 15px;
+`;
+
+export const DateCreate = styled.span`
+  font-weight: bolder;
+  font-family: 'Lato', sans-serif;
 `;
 
 export const Title = styled.h3`
-  color: #0f3cbb;
+  color: #007acc;
+  font-size: 20px;
 `;
 
 export const ItemArticle = styled.div`
@@ -61,8 +65,8 @@ export const ItemArticle = styled.div`
 `;
 
 export const AuthorImage = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 `;
 
@@ -70,15 +74,24 @@ export const LikeContainer = styled.div`
   margin-left: 10px;
   display: flex;
   justify-content: space-between;
-  width: 25px;
+  width: 31px;
   /* border: 1px red solid; */
   padding-top: 2px;
+  font-size: 18px;
 `;
 
 export const UsetContainer = styled.div`
   display: flex;
-  width: 250px;
+  width: 270px;
+  padding-top: 10px;
+  padding-right: 25px;
   /* border: 3px blue solid; */
+`;
+
+export const Author = styled.h4`
+  font-size: 15px;
+  font-family: 'Lobster', cursive;
+  font-weight: bolder;
 `;
 
 export const Wrapper = styled.div`
@@ -87,6 +100,6 @@ export const Wrapper = styled.div`
 
 export const WrapperPagination = styled.div`
   width: 450px;
+  display: flex;
   margin: 0 auto;
-  border: 3px blue solid;
 `;

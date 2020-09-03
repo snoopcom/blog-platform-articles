@@ -13,6 +13,8 @@ import {
   UsetContainer,
   Header,
   DataUser,
+  Author,
+  DateCreate,
 } from './Style';
 import Like from './Like';
 import { addOneArticleAction } from '../../store/actions';
@@ -36,6 +38,7 @@ const ListArticles = ({ article }) => {
   const handleTest = (data) => {
     // console.log(slug);
     addOneArticleAction(data);
+    // dispatch(setCurrentPage(currentPage));
   };
 
   return (
@@ -52,8 +55,8 @@ const ListArticles = ({ article }) => {
         </ArticleContainer>
         <UsetContainer>
           <DataUser>
-            <h4>{author.username}</h4>
-            <span>{formatDistance(new Date(createdAt), Date.now())}</span>
+            <Author>{author.username}</Author>
+            <DateCreate>{formatDistance(new Date(createdAt), Date.now())}</DateCreate>
           </DataUser>
           <AuthorImage src={author.image} alt="img" />
         </UsetContainer>

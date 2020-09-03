@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
-  Wrapper, Item, List, ListNavbar,
+  Wrapper, Item, List, ListNavbar, ListHome,
 } from './style';
 import { isInactive, logOutAction, articlesAction } from '../../store/actions';
 import logoUser from '../../img/logoUser.png';
@@ -81,6 +81,9 @@ const Header = () => {
 
   return (
     <Wrapper>
+      <ListHome>
+        <NavLink to="/">Realworld Blog</NavLink>
+      </ListHome>
       <ListNavbar>{isLogged ? navbar : userProfile}</ListNavbar>
     </Wrapper>
   );

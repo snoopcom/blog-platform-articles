@@ -32,6 +32,7 @@ export const loadArticlesList = createAction('LOAD_ARTICLES_LIST');
 export const loadAllArticles = createAction('LOAD_ARTICLES_LIST');
 export const setLikeArticle = createAction('SET_LIKE_ARTICLE');
 export const unsetLikeArticle = createAction('SET_LIKE_ARTICLE');
+export const setCurrentPage = createAction('SET_CURRENT_PAGE');
 
 /* like */
 export const setFavoriteRequest = createAction('SET_FAVORITE_REQUEST');
@@ -53,6 +54,7 @@ export const changePage = createAction('CHANGE_CURRENT_PAGE');
 export const articlesAction = (params) => async (dispatch) => {
   dispatch(articlesRequest());
   try {
+    // console.log(params);
     const response = await getArticlesRequest(params);
     const { articles, articlesCount } = response;
     dispatch(articlesSuccess({ articles, articlesCount }));

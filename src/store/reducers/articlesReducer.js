@@ -2,6 +2,7 @@ import { handleActions } from 'redux-actions';
 import * as actions from '../actions';
 
 const initialState = {
+  currentUser: {},
   articles: [],
   articlesCount: 0,
   currentPage: 1,
@@ -29,6 +30,10 @@ const articlesReducer = handleActions(
       const articles = state.articles.map((item) => (item.slug === newItem.slug ? newItem : item));
       return { ...state, articles };
     },
+    // [actions.setCurrentPage]: (state, { payload }) => {
+    //  console.log({ payload });
+    //   // state.currentPage = payload;
+    // },
   },
   initialState,
 );

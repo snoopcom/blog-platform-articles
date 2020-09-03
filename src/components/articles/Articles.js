@@ -18,18 +18,18 @@ const Articles = () => {
     loadArticles();
   }, []);
 
-  const {
-    articles, articlesCount, pageSize, params,
-  } = articlesReducer;
+  const { articles, articlesCount, pageSize } = articlesReducer;
   const { currentPage } = pageSettingsReducer;
 
   /* пагинация */
   const handlePage = (page) => {
     dispatch(changePageAction(page));
-    dispatch(articlesAction({ ...params, offset: (page - 1) * pageSize }));
+    dispatch(articlesAction({ offset: (page - 1) * pageSize }));
   };
 
-  const list = articles.map((article) => <Article key={article.slug} article={article} />);
+  const list = articles.map((article) => (
+    <Article key={article.slug} article={article} currentPage={currentPage} />
+  ));
 
   return (
     <Container>
@@ -37,6 +37,7 @@ const Articles = () => {
         <div>{list}</div>
         <WrapperPagination>
           <Pagination
+            style={{ margin: '0 auto' }}
             total={articlesCount}
             defaultCurrent={1}
             showSizeChanger={false}

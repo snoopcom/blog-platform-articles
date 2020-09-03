@@ -5,6 +5,8 @@ export const Wrapper = styled.div`
   color: #fff;
   height: 80px;
   margin-bottom: 35px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ListNavbar = styled.div`
@@ -29,4 +31,8 @@ export const Item = styled.li`
   margin-right: 30px;
   width: 200px;
   height: 40px;
+`;
+
+export const ListHome = styled.span`
+  border: 1px red solid;
 `;

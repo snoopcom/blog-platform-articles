@@ -11,8 +11,8 @@ const Article = () => {
   const history = useHistory();
   const { slug } = useParams();
   const articlesReducer = useSelector((state) => state.articlesReducer);
-
   const dataUserReducer = useSelector((state) => state.dataUserReducer);
+
   const { username } = dataUserReducer;
 
   const { articles } = articlesReducer;
@@ -60,8 +60,6 @@ const Article = () => {
     <Container>
       <ItemArticle>
         <Like article={currentArticle} />
-        {console.log(username)}
-        {console.log(author.username)}
         {favoritesCount}
         <h2>{title}</h2>
         {username === author.username ? loginControl : null}

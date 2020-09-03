@@ -64,6 +64,9 @@ export const deleteFavoriteRequest = async (slug) => {
 
 /* articles */
 export const getArticlesRequest = async (params) => {
+  // const { data } = params;
+  console.log({ params });
+
   const url = `${baseUrl}articles?limit=10`;
   const response = await api.get(url, { params });
   return response.data;
