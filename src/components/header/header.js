@@ -8,7 +8,6 @@ import { isInactive, logOutAction, articlesAction } from '../../store/actions';
 import logoUser from '../../img/logoUser.png';
 
 const Header = () => {
-  // const history = useHistory();
   const dispatch = useDispatch();
   const userReducer = useSelector((state) => state.userReducer);
 
@@ -26,7 +25,7 @@ const Header = () => {
     }
   } catch (error) {
     if (data === null) {
-      // history.push('/login');
+      console.log(error);
     }
   }
 
@@ -39,15 +38,12 @@ const Header = () => {
   };
 
   const handleExit = () => {
-    // dispatch(isInactive());
     dispatch(logOutAction());
     dispatch(articlesAction());
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    // history.push('/');
   };
 
-  /* login/signUp */
   const navbar = (
     <List>
       <Item>
@@ -74,7 +70,9 @@ const Header = () => {
         <LogoUser src={logoUser} alt="logo user" />
       </Item>
       <Item>
-        <Link onClick={handleExit}>Log Out</Link>
+        <Link to="" onClick={handleExit}>
+          Log Out
+        </Link>
       </Item>
     </List>
   );

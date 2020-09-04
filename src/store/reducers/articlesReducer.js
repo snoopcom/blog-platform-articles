@@ -19,7 +19,11 @@ const articlesReducer = handleActions(
       articlesCount,
     }),
     [actions.articlesFailure]: (state) => ({ ...state, articles: [] }),
-    [actions.setArticlesParams]: (state, { payload: { params } }) => ({ ...state, params }),
+    // [actions.setArticlesParams]: (state, { payload: { params } }) => {
+    //   console.log(params);
+    //   return { ...state, params }
+    // },
+    // ({ ...state, params }),
 
     /* поствавить/убрать лайк */
     [actions.setFavoriteSuccess]: (state, { payload: { article: newItem } }) => {

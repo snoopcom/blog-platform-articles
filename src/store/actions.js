@@ -54,9 +54,10 @@ export const changePage = createAction('CHANGE_CURRENT_PAGE');
 export const articlesAction = (params) => async (dispatch) => {
   dispatch(articlesRequest());
   try {
-    // console.log(params);
     const response = await getArticlesRequest(params);
+    console.log(params);
     const { articles, articlesCount } = response;
+    // dispatch(setArticlesParams(params))
     dispatch(articlesSuccess({ articles, articlesCount }));
   } catch (error) {
     dispatch(articlesFailure(error.response));

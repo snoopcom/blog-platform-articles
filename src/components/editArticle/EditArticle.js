@@ -15,10 +15,6 @@ const EditArticle = () => {
   const currentArticle = articles.find((article) => article.slug === slug);
   const history = useHistory();
 
-  // const {
-  //   title, body, description,
-  // } = currentArticle;
-
   const handleSubmit = async (values) => {
     await editArticleAction(values, slug);
     history.push('/');

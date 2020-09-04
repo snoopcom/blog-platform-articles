@@ -1,11 +1,12 @@
 import React from 'react';
 import { Formik } from 'formik';
-// import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
   Form, Input, Table, SubmitButton, AddRowButton, RemoveRowButton,
 } from 'formik-antd';
 import { FileAddOutlined, TagOutlined, DeleteOutlined } from '@ant-design/icons';
+import { addArticleAction } from '../../store/actions';
+import validationSchema from './ValidationSchema';
 import {
   Container,
   InputContainer,
@@ -14,8 +15,6 @@ import {
   SubmitButtonContainer,
   Title,
 } from './Style';
-import { addArticleAction } from '../../store/actions';
-import validationSchema from './ValidationSchema';
 
 const initialValues = {
   title: '',
@@ -25,10 +24,7 @@ const initialValues = {
 };
 
 const CreateArticle = () => {
-  // const dispatch = useDispatch()
   const history = useHistory();
-  // const handleClickButton = () => {
-  // };
   const articleSubmit = async (values) => {
     await addArticleAction(values);
     history.push('/');
@@ -89,7 +85,6 @@ const CreateArticle = () => {
                         placeholder="tag"
                         size="large"
                         suffix={<TagOutlined />}
-                        // onPressEnter={handleClickButton}
                         autoFocus
                       />
                       <div>

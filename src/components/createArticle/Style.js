@@ -21,8 +21,8 @@ export const ButtonContainer = styled.div`
 export const SubmitButtonContainer = styled.div`
   margin: 10px auto 10px;
   text-align: center;
-  width: 350px;
-  padding-bottom: 20px;
+  width: 220px;
+  padding-bottom: 25px;
 `;
 
 export const RequiredStar = styled.span`

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
   margin: 0 auto;
 `;
@@ -13,7 +12,6 @@ export const AllListArticles = styled.div`
   border-radius: 5px;
   width: 940px;
   height: 200px;
-  /* border: 3px red solid; */
   box-shadow:
    0 1px 4px rgba(0, 0, 0, .3),
    -23px 0 40px -23px rgba(0, 0, 0, .8),
@@ -31,13 +29,11 @@ export const Header = styled.div`
 export const ArticleContainer = styled.div`
   display: flex;
   width: 360px;
-  /* border: 3px blue solid;  */
   padding-top: 10px;
   padding-left: 20px;
 `;
 
 export const DataUser = styled.div`
-  /* border: 1px blue solid; */
   width: 160px;
   text-align: center;
   padding-top: 15px;
@@ -74,7 +70,6 @@ export const LikeContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 31px;
-  /* border: 1px red solid; */
   padding-top: 2px;
   font-size: 18px;
 `;
@@ -84,7 +79,6 @@ export const UsetContainer = styled.div`
   width: 270px;
   padding-top: 10px;
   padding-right: 25px;
-  /* border: 3px blue solid; */
 `;
 
 export const Author = styled.h4`
@@ -104,7 +98,7 @@ export const WrapperPagination = styled.div`
 `;
 
 export const Description = styled.span`
-  padding-left: 18px;
+  margin-left: 17px;
   font-size: 17px;
   font-family: 'Gayathri', sans-serif;
 `;
