@@ -3,9 +3,26 @@ import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { Button, Popconfirm } from 'antd';
+import { uniqueId } from 'lodash';
 import Like from './Like';
 import { deleteArticleAction } from '../../store/actions';
-import { Container, ItemArticle } from './Style';
+import {
+  Container,
+  ItemArticle,
+  ArticleContainer,
+  AuthorImage,
+  Title,
+  LikeContainer,
+  UsetContainer,
+  Header,
+  DataUser,
+  Author,
+  Description,
+  Tag,
+  TagContainer,
+  BodyContainer,
+  DateContainer,
+} from './Style';
 
 const Article = () => {
   const history = useHistory();
@@ -34,7 +51,7 @@ const Article = () => {
   };
 
   const EditArticle = (
-    <Button>
+    <Button type="primary">
       <Link to={`/articles/${slug}/edit`}>Edit</Link>
     </Button>
   );
@@ -44,7 +61,7 @@ const Article = () => {
       title="Вы действительно хотите удалить эту статью?"
       onConfirm={() => handleDelete(slug)}
     >
-      <Button>Delete</Button>
+      <Button type="danger">Delete</Button>
     </Popconfirm>
   );
 
@@ -59,33 +76,38 @@ const Article = () => {
   return (
     <Container>
       <ItemArticle>
-        <Like article={currentArticle} />
-        {favoritesCount}
-        <h2>{title}</h2>
-        {username === author.username ? loginControl : null}
-        Теги:
-        {' '}
-        {tagList}
-        <br />
-        <span>
-          <b>description: </b>
-          {description}
-        </span>
-        <div>
-          <b>author: </b>
-          {author ? author.username : null}
+        <Header>
+          <ArticleContainer>
+            <Title>{title}</Title>
+            <LikeContainer>
+              <Like article={currentArticle} />
+              {favoritesCount}
+            </LikeContainer>
+          </ArticleContainer>
+          <UsetContainer>
+            <DataUser>
+              <Author>{author.username}</Author>
+              {username === author.username ? loginControl : null}
+            </DataUser>
+            {author ? <AuthorImage src={author.image} alt="" width="46" height="46" /> : null}
+          </UsetContainer>
+        </Header>
+        <Description>{description}</Description>
+        <TagContainer>
+          {tagList.map((tag) => (
+            <Tag key={uniqueId()}>{tag}</Tag>
+          ))}
+        </TagContainer>
+        <BodyContainer>{body}</BodyContainer>
+        <DateContainer>
+          <b>Created at: </b>
+          {' '}
+          {createdAt && format(new Date(createdAt), 'hh:mm  MMMMMM dd')}
           <br />
-          {author ? <img src={author.image} alt="" width="46" height="46" /> : null}
-        </div>
-        {body}
-        <br />
-        <b>Created at:</b>
-        {' '}
-        {createdAt && format(new Date(createdAt), 'hh:mm  MMMMMM dd')}
-        <br />
-        <b>Updated at:</b>
-        {' '}
-        {updatedAt && format(new Date(updatedAt), 'hh:mm  MMMMMM dd')}
+          <b>Updated at: </b>
+          {' '}
+          {updatedAt && format(new Date(updatedAt), 'hh:mm  MMMMMM dd')}
+        </DateContainer>
       </ItemArticle>
     </Container>
   );

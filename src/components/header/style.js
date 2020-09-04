@@ -21,18 +21,23 @@ export const List = styled.ul`
   padding-right: 30px;
   padding-top: 20px;
   list-style: none;
-  border: 1px red solid;
-  width: 600px;
+  /* border: 1px red solid; */
   height: 80px;
-  text-align: ;
 `;
+
 export const Item = styled.li`
-  border: 1px red solid;
-  margin-right: 30px;
-  width: 200px;
+  margin-right: 47px;
+  font-size: 20px;
   height: 40px;
+  /* border: 1px red solid; */
+`;
+
+export const LogoUser = styled.img`
+  margin-top: -5px;
 `;
 
 export const ListHome = styled.span`
-  border: 1px red solid;
+  padding-top: 20px;
+  font-size: 20px;
+  padding-left: 30px;
 `;

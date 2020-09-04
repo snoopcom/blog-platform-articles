@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import {
-  Wrapper, Item, List, ListNavbar, ListHome,
+  Wrapper, Item, List, ListNavbar, ListHome, LogoUser,
 } from './style';
 import { isInactive, logOutAction, articlesAction } from '../../store/actions';
 import logoUser from '../../img/logoUser.png';
@@ -71,7 +71,7 @@ const Header = () => {
       </Item>
       <Item>{email}</Item>
       <Item>
-        <img src={logoUser} alt="logo user" />
+        <LogoUser src={logoUser} alt="logo user" />
       </Item>
       <Item>
         <Link onClick={handleExit}>Log Out</Link>

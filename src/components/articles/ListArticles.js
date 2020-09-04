@@ -15,6 +15,9 @@ import {
   DataUser,
   Author,
   DateCreate,
+  Description,
+  Tag,
+  TagContainer,
 } from './Style';
 import Like from './Like';
 import { addOneArticleAction } from '../../store/actions';
@@ -61,15 +64,12 @@ const ListArticles = ({ article }) => {
           <AuthorImage src={author.image} alt="img" />
         </UsetContainer>
       </Header>
-      <span>{description}</span>
-      <div>
-        Теги:
+      <Description>{description}</Description>
+      <TagContainer>
         {tagList.map((tag) => (
-          <span key={uniqueId()}>{tag}</span>
+          <Tag key={uniqueId()}>{tag}</Tag>
         ))}
-      </div>
-
-      <br />
+      </TagContainer>
     </AllListArticles>
   );
 };

@@ -28,7 +28,7 @@ const EditArticle = () => {
     <Container>
       <Formik initialValues={currentArticle} onSubmit={handleSubmit}>
         <Form>
-          <h1>Edit Article</h1>
+          <h1>Редактирование Статьи</h1>
           <div>
             <label htmlFor="title">title</label>
             <Form.Item name="title">
@@ -48,7 +48,7 @@ const EditArticle = () => {
             </Form.Item>
           </div>
           <div>
-            <SubmitButton disabled={false} size="large" shape="round" icon={<FileAddOutlined />}>
+            <SubmitButton disabled={false} size="large" icon={<FileAddOutlined />}>
               Save article
             </SubmitButton>
           </div>

@@ -6,8 +6,16 @@ import {
   Form, Input, Table, SubmitButton, AddRowButton, RemoveRowButton,
 } from 'formik-antd';
 import { FileAddOutlined, TagOutlined, DeleteOutlined } from '@ant-design/icons';
-import Container from './Style';
+import {
+  Container,
+  InputContainer,
+  ButtonContainer,
+  RequiredStar,
+  SubmitButtonContainer,
+  Title,
+} from './Style';
 import { addArticleAction } from '../../store/actions';
+import validationSchema from './ValidationSchema';
 
 const initialValues = {
   title: '',
@@ -27,38 +35,44 @@ const CreateArticle = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={articleSubmit}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={articleSubmit}
+      validationSchema={validationSchema}
+    >
       <Container>
         <Form>
-          <h1>Создать новую статью</h1>
-          <div>
+          <Title>
+            <h1>Создать новую статью</h1>
+          </Title>
+          <InputContainer>
             <label htmlFor="title">
               title
-              <span> *</span>
+              <RequiredStar> *</RequiredStar>
             </label>
             <Form.Item name="title">
               <Input id="title" name="title" placeholder="title" size="large" />
             </Form.Item>
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <label htmlFor="description">
               description
-              <span> *</span>
+              <RequiredStar> *</RequiredStar>
             </label>
             <Form.Item name="description">
               <Input id="description" name="description" placeholder="description" size="large" />
             </Form.Item>
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <label htmlFor="body">
               body
-              <span> *</span>
+              <RequiredStar> *</RequiredStar>
             </label>
             <Form.Item name="body">
               <Input.TextArea id="body" name="body" placeholder="your text" size="large" />
             </Form.Item>
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <Table
               name="tagList"
               rowKey={(row) => `${row.id}`}
@@ -86,7 +100,7 @@ const CreateArticle = () => {
                 },
               ]}
             />
-            <div>
+            <ButtonContainer>
               <AddRowButton
                 name="tagList"
                 createNewRow={() => ''}
@@ -97,21 +111,20 @@ const CreateArticle = () => {
               >
                 Add tag
               </AddRowButton>
-            </div>
-          </div>
-          <div>
+            </ButtonContainer>
+          </InputContainer>
+          <SubmitButtonContainer>
             <br />
             <SubmitButton
               loading={false}
               disabled={false}
               size="large"
-              shape="round"
               block="true"
               icon={<FileAddOutlined />}
             >
               Send
             </SubmitButton>
-          </div>
+          </SubmitButtonContainer>
         </Form>
       </Container>
     </Formik>
