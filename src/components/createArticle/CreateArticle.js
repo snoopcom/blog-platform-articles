@@ -1,11 +1,12 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Form, Input, Table, SubmitButton, AddRowButton, RemoveRowButton,
 } from 'formik-antd';
 import { FileAddOutlined, TagOutlined, DeleteOutlined } from '@ant-design/icons';
-import { addArticleAction } from '../../store/actions';
+import { addArticleAction, isActive } from '../../store/actions';
 import validationSchema from './ValidationSchema';
 import {
   Container,
@@ -24,8 +25,12 @@ const initialValues = {
 };
 
 const CreateArticle = () => {
+  const buttonReducer = useSelector((state) => state.buttonReducer);
+  const dispatch = useDispatch();
   const history = useHistory();
+
   const articleSubmit = async (values) => {
+    dispatch(isActive());
     await addArticleAction(values);
     history.push('/');
   };
@@ -111,8 +116,9 @@ const CreateArticle = () => {
           <SubmitButtonContainer>
             <br />
             <SubmitButton
+              disabled={buttonReducer}
+              htmlType="submit"
               loading={false}
-              disabled={false}
               size="large"
               block="true"
               icon={<FileAddOutlined />}

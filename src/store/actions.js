@@ -14,8 +14,6 @@ import {
   deleteArticleRequest,
 } from '../api/index';
 
-// const history = useHistory();
-
 // Функция createAction принимает тип действия
 // (свойство type) и возвращает функцию, принимающую payload
 
@@ -55,7 +53,6 @@ export const articlesAction = (params) => async (dispatch) => {
   dispatch(articlesRequest());
   try {
     const response = await getArticlesRequest(params);
-    console.log(params);
     const { articles, articlesCount } = response;
     // dispatch(setArticlesParams(params))
     dispatch(articlesSuccess({ articles, articlesCount }));
@@ -123,6 +120,7 @@ export const setFavoriteArticle = (slug) => async (dispatch) => {
     dispatch(setFavoriteSuccess(response.data));
   } catch (error) {
     dispatch(setFavoriteFailure(error.response));
+    window.history.go(-1);
     console.log(error);
   }
 };

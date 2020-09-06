@@ -53,6 +53,7 @@ export const signUpRequest = async (values) => {
 export const addFavoriteRequest = async (slug) => {
   const url = `${baseUrl}articles/${slug}/favorite`;
   const response = await api.post(url);
+  console.log(response);
   return response;
 };
 

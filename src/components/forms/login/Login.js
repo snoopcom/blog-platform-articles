@@ -25,12 +25,11 @@ const Login = () => {
 
   const onSubmit = async (values) => {
     try {
+      dispatch(isActive());
       const response = await dispatch(authorization(values));
 
       if (response.request.status === 200) {
-        // console.log(username);
         dispatch(userData(response.data.user));
-        dispatch(isActive());
         dispatch(logAction(values));
       }
 

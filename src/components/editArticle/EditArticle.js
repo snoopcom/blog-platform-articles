@@ -1,21 +1,26 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { Form, Input, SubmitButton } from 'formik-antd';
-import { useSelector } from 'react-redux';
+import { FileAddOutlined, TagOutlined, DeleteOutlined } from '@ant-design/icons';
+import {
+  Form, Input, Table, SubmitButton, AddRowButton, RemoveRowButton,
+} from 'formik-antd';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { FileAddOutlined } from '@ant-design/icons';
 import Container from './Style';
-import { editArticleAction } from '../../store/actions';
+import { editArticleAction, isActive } from '../../store/actions';
 
 const EditArticle = () => {
+  const dispatch = useDispatch();
   const { slug } = useParams();
+  const buttonReducer = useSelector((state) => state.buttonReducer);
   const articlesReducer = useSelector((state) => state.articlesReducer);
   const { articles } = articlesReducer;
   const currentArticle = articles.find((article) => article.slug === slug);
   const history = useHistory();
 
   const handleSubmit = async (values) => {
+    dispatch(isActive());
     await editArticleAction(values, slug);
     history.push('/');
   };
@@ -44,7 +49,54 @@ const EditArticle = () => {
             </Form.Item>
           </div>
           <div>
-            <SubmitButton disabled={false} size="large" icon={<FileAddOutlined />}>
+            <Table
+              name="tagList"
+              rowKey={(row) => `${row.id}`}
+              size="small"
+              pagination={false}
+              columns={[
+                {
+                  title: 'Tags',
+                  key: 'tag',
+                  render: (text, record, i) => (
+                    <div>
+                      <Input
+                        name={`tagList[${i}]`}
+                        placeholder="tag"
+                        size="large"
+                        suffix={<TagOutlined />}
+                        autoFocus
+                      />
+                      <div>
+                        <RemoveRowButton name="tagList" icon={<DeleteOutlined />} index={i} />
+                      </div>
+                    </div>
+                  ),
+                },
+              ]}
+            />
+            <div>
+              <AddRowButton
+                name="tagList"
+                createNewRow={() => ''}
+                size="large"
+                type="primary"
+                block="true"
+                id="addTagButton"
+              >
+                Add tag
+              </AddRowButton>
+            </div>
+          </div>
+          <div>
+            <SubmitButton
+              disabled={buttonReducer}
+              htmlType="submit"
+              loading={false}
+              size="large"
+              block="true"
+              icon={<FileAddOutlined />}
+            >
               Save article
             </SubmitButton>
           </div>

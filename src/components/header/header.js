@@ -10,6 +10,7 @@ import logoUser from '../../img/logoUser.png';
 const Header = () => {
   const dispatch = useDispatch();
   const userReducer = useSelector((state) => state.userReducer);
+  // const buttonReducer = useSelector((state) => state.buttonReducer);
 
   let { email } = userReducer;
   let data;
@@ -44,6 +45,10 @@ const Header = () => {
     localStorage.removeItem('token');
   };
 
+  const handleCreateArticle = () => {
+    dispatch(isInactive());
+  };
+
   const navbar = (
     <List>
       <Item>
@@ -63,7 +68,9 @@ const Header = () => {
   const userProfile = (
     <List>
       <Item>
-        <Link to="/add">Create Article</Link>
+        <Link to="/add" onClick={handleCreateArticle}>
+          Create Article
+        </Link>
       </Item>
       <Item>{email}</Item>
       <Item>

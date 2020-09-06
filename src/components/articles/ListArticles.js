@@ -2,7 +2,7 @@ import React from 'react';
 import { formatDistance } from 'date-fns';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { uniqueId } from 'lodash';
 import {
   AllListArticles,
@@ -20,10 +20,10 @@ import {
   TagContainer,
 } from './Style';
 import Like from './Like';
-import { addOneArticleAction } from '../../store/actions';
+import { addOneArticleAction, isInactive } from '../../store/actions';
 
 const ListArticles = ({ article }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const {
     slug,
@@ -39,7 +39,7 @@ const ListArticles = ({ article }) => {
   // console.log(tagList);
 
   const handleTest = (data) => {
-    // console.log(slug);
+    dispatch(isInactive()); // делает кнопку редактрования активной
     addOneArticleAction(data);
     // dispatch(setCurrentPage(currentPage));
   };
