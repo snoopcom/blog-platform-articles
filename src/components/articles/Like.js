@@ -9,8 +9,16 @@ const Like = ({ article }) => {
   const { favorited, slug } = article;
 
   const setLike = () => {
-    dispatch(setFavoriteArticle(slug));
-    dispatch(isInactive()); // делаем активным логин
+    try {
+      const response = dispatch(setFavoriteArticle(slug));
+      dispatch(isInactive()); // делаем активным логин
+      console.log(response);
+      if (response) {
+        throw console.log('hello');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const deleteLike = () => dispatch(unsetFavoriteArticle(slug));

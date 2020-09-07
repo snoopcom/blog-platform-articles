@@ -1,6 +1,4 @@
-// import axios from 'axios';
 import { createAction } from 'redux-actions';
-// import { useHistory } from 'react-router-dom';
 import {
   userRequest,
   loginRequest,
@@ -9,10 +7,11 @@ import {
   addFavoriteRequest,
   deleteFavoriteRequest,
   addArticleRequest,
-  getOneArticleRequest,
+  getArticleRequest,
   editArticleRequest,
   deleteArticleRequest,
 } from '../api/index';
+import { openNotificationError } from '../api/openNotification';
 
 // Функция createAction принимает тип действия
 // (свойство type) и возвращает функцию, принимающую payload
@@ -49,48 +48,24 @@ export const setArticlesParams = createAction('SET_ARTICLES_PARAMS');
 export const changePage = createAction('CHANGE_CURRENT_PAGE');
 
 /* articles */
-export const articlesAction = (params) => async (dispatch) => {
+export const getArticles = (params) => async (dispatch) => {
   dispatch(articlesRequest());
   try {
     const response = await getArticlesRequest(params);
     const { articles, articlesCount } = response;
-    // dispatch(setArticlesParams(params))
+    if (response === null) {
+      throw console.log('oops');
+    }
     dispatch(articlesSuccess({ articles, articlesCount }));
   } catch (error) {
     dispatch(articlesFailure(error.response));
+    openNotificationError('error');
   }
 };
 
 export const changePageAction = (pageNumber) => async (dispatch) => {
   dispatch(changePage({ pageNumber }));
 };
-
-// ------------------ articlePostFetch ----------------------
-// export const articlePostFetch = (article /*, setFieldError*/) => async (dispatch) => {
-//   // dispatch(changeLoadingStatus(true));
-//   try {
-//   // const url = routes.articlePostUrl();
-//   // console.log(url);
-//   await axios.post('https://conduit.productionready.io/api/articles', { article });
-//   // dispatch(changeLoadingStatus(false));
-//   } catch (err) {
-//   // const { errors } = response.data;
-//   // dispatch(changeFetchStatus(errors));
-//   // dispatch(changeLoadingStatus(false));
-//   // setFieldError('title', errors.title);
-//   // setFieldError('description', errors.description);
-//   // setFieldError('body', errors.body);
-//    console.log(err.response);
-//   }
-// };
-
-// /* articles */
-// export const getArticles1 = () => async (dispatch) => {
-//   const response = await getArticlesRequest();
-//   dispatch(loadArticlesList(response));
-//   return response;
-// };
-// // getArticles1();
 
 /* user */
 export const getUser = () => async (dispatch) => {
@@ -116,12 +91,15 @@ export const setFavoriteArticle = (slug) => async (dispatch) => {
   dispatch(setFavoriteRequest());
   try {
     const response = await addFavoriteRequest(slug);
-    // console.log(response.data);
     dispatch(setFavoriteSuccess(response.data));
   } catch (error) {
     dispatch(setFavoriteFailure(error.response));
-    window.history.go(-1);
-    console.log(error);
+    if (error) {
+      // history.push('/login');
+    }
+    // if (error.request) {
+    //   history.push('/login');
+    // }
   }
 };
 
@@ -138,21 +116,13 @@ export const unsetFavoriteArticle = (slug) => async (dispatch) => {
 
 /* add article */
 export const addArticleAction = async (article) => {
-  // dispatch(addArticleRequest());
-  try {
-    await addArticleRequest({ article });
-    // dispatch(addArticleSuccess({ article }));
-    // history.push('/articles');
-    // return response;
-  } catch (error) {
-    // dispatch(addArticleFailure(err.response));
-  }
+  await addArticleRequest({ article });
 };
 
 /* get one article */
 export const addOneArticleAction = async (slug) => {
   try {
-    await getOneArticleRequest(slug);
+    await getArticleRequest(slug);
   } catch (error) {
     console.log(error);
   }

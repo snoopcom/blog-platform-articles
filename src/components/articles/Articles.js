@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Pagination } from 'antd';
 import { Container, Wrapper, WrapperPagination } from './Style';
-import { articlesAction, changePageAction } from '../../store/actions';
-import Article from './ListArticles';
+import { getArticles, changePageAction } from '../../store/actions';
+import ListArticles from './ListArticles';
 
 const Articles = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const Articles = () => {
   const pageSettingsReducer = useSelector((state) => state.pageSettingsReducer);
 
   const loadArticles = async () => {
-    await dispatch(articlesAction());
+    await dispatch(getArticles());
   };
 
   useEffect(() => {
@@ -23,13 +23,15 @@ const Articles = () => {
 
   /* пагинация */
   const handlePage = (page) => {
-    dispatch(changePageAction(page));
-    dispatch(articlesAction({ offset: (page - 1) * pageSize }));
+    try {
+      dispatch(changePageAction(page));
+      dispatch(getArticles({ offset: (page - 1) * pageSize }));
+    } catch (error) {
+      console.log('hellt');
+    }
   };
 
-  const list = articles.map((article) => (
-    <Article key={article.slug} article={article} currentPage={currentPage} />
-  ));
+  const list = articles.map((article) => <ListArticles key={article.slug} article={article} />);
 
   return (
     <Container>

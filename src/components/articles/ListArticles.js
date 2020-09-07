@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { uniqueId } from 'lodash';
 import {
-  AllListArticles,
+  ContainerArticles,
   ArticleContainer,
   AuthorImage,
   Title,
@@ -26,29 +26,19 @@ const ListArticles = ({ article }) => {
   const dispatch = useDispatch();
 
   const {
-    slug,
-    title,
-    tagList,
-    author,
-    description,
-    createdAt,
-    favoritesCount,
-    // favorited,
+    slug, title, tagList, author, description, createdAt, favoritesCount,
   } = article;
 
-  // console.log(tagList);
-
-  const handleTest = (data) => {
+  const handleArticle = (data) => {
     dispatch(isInactive()); // делает кнопку редактрования активной
     addOneArticleAction(data);
-    // dispatch(setCurrentPage(currentPage));
   };
 
   return (
-    <AllListArticles key={slug}>
+    <ContainerArticles key={slug}>
       <Header>
         <ArticleContainer>
-          <NavLink to={`/articles/${slug}`} onClick={() => handleTest(slug)}>
+          <NavLink to={`/articles/${slug}`} onClick={() => handleArticle(slug)}>
             <Title>{title}</Title>
           </NavLink>
           <LikeContainer>
@@ -70,7 +60,7 @@ const ListArticles = ({ article }) => {
           <Tag key={uniqueId()}>{tag}</Tag>
         ))}
       </TagContainer>
-    </AllListArticles>
+    </ContainerArticles>
   );
 };
 

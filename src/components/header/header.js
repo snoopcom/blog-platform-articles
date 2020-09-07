@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import {
   Wrapper, Item, List, ListNavbar, ListHome, LogoUser,
 } from './style';
-import { isInactive, logOutAction, articlesAction } from '../../store/actions';
+import { isInactive, logOutAction, getArticles } from '../../store/actions';
 import logoUser from '../../img/logoUser.png';
 
 const Header = () => {
@@ -40,7 +40,7 @@ const Header = () => {
 
   const handleExit = () => {
     dispatch(logOutAction());
-    dispatch(articlesAction());
+    dispatch(getArticles());
     localStorage.removeItem('user');
     localStorage.removeItem('token');
   };

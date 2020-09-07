@@ -13,10 +13,7 @@ import {
   articleDeleteUrl,
 } from './routes';
 
-export const baseUrl = 'https://conduit.productionready.io/api/';
-
 export const api = axios.create();
-console.log(userPostUrl());
 
 /* user */
 api.interceptors.request.use((req) => {
@@ -77,7 +74,7 @@ export const getArticlesRequest = async (params) => {
 };
 
 /* article */
-export const getOneArticleRequest = async (slug) => {
+export const getArticleRequest = async (slug) => {
   const response = api.get(getArticlePostUrl(slug));
   return response;
 };

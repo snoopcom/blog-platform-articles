@@ -4,6 +4,7 @@ import { Form, Input, SubmitButton } from 'formik-antd';
 import { MailOutlined, UserOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { openNotificationError, openNotificationSuccess } from '../../../api/openNotification';
 import { signUpRequest } from '../../../api/index';
 import validationSchema from './ValidationSchema';
 import { isActive, logAction, isInactive } from '../../../store/actions';
@@ -27,7 +28,7 @@ const SignUp = () => {
       dispatch(logAction(values));
       await signUpRequest(values);
       history.push('/');
-      alert('Вы успешно зарегистрировались!');
+      openNotificationSuccess('success');
     } catch (error) {
       if (error.request.status === 422) {
         dispatch(isInactive());
@@ -35,7 +36,7 @@ const SignUp = () => {
       }
       if (error.request.status === 0) {
         dispatch(isInactive());
-        alert(':( неполадки с сетью');
+        openNotificationError('error');
       }
     }
   };

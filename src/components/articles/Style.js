@@ -6,7 +6,7 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
-export const AllListArticles = styled.div`
+export const ContainerArticles = styled.div`
   margin-bottom: 40px;
   background-color: #fff;
   border-radius: 5px;

@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { Form, Input, SubmitButton } from 'formik-antd';
 import { MailOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
+import { openNotificationError } from '../../../api/openNotification';
 import {
   authorization, logAction, isActive, isInactive, userData,
 } from '../../../store/actions';
@@ -45,7 +46,7 @@ const Login = () => {
       }
       if (error.request.status === 0) {
         dispatch(isInactive());
-        alert(':( неполадки с сетью');
+        openNotificationError('error');
       }
     }
   };
