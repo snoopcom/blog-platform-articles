@@ -12,11 +12,11 @@ const Like = ({ article }) => {
 
   const setLike = () => {
     try {
-      const response = dispatch(setFavoriteArticle(slug));
+      dispatch(setFavoriteArticle(slug));
       dispatch(isInactive()); // делаем активным логин
-      if (response) {
-        throw console.log('no');
-      }
+      // if (response) {
+      //   throw console.log('no');
+      // }
     } catch (error) {
       history.push('/login');
     }
