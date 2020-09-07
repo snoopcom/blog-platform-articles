@@ -1,10 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { HeartTwoTone } from '@ant-design/icons';
 import { setFavoriteArticle, unsetFavoriteArticle, isInactive } from '../../store/actions';
 
 const Like = ({ article }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { favorited, slug } = article;
 
@@ -12,12 +14,11 @@ const Like = ({ article }) => {
     try {
       const response = dispatch(setFavoriteArticle(slug));
       dispatch(isInactive()); // делаем активным логин
-      console.log(response);
       if (response) {
-        throw console.log('hello');
+        throw console.log('no');
       }
     } catch (error) {
-      console.log(error);
+      history.push('/login');
     }
   };
 
