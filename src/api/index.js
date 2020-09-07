@@ -1,8 +1,22 @@
 import axios from 'axios';
 
+import {
+  userPostUrl,
+  userLoginUrl,
+  userSignUpUrl,
+  setFavoriteArticleUrl,
+  deleteFavoriteArticleUrl,
+  getArticlesListUrl,
+  getArticlePostUrl,
+  addArticlePostUrl,
+  articleEditUrl,
+  articleDeleteUrl,
+} from './routes';
+
 export const baseUrl = 'https://conduit.productionready.io/api/';
 
 export const api = axios.create();
+console.log(userPostUrl());
 
 /* user */
 api.interceptors.request.use((req) => {
@@ -16,8 +30,7 @@ api.interceptors.request.use((req) => {
 });
 
 export const userRequest = async () => {
-  const url = `${baseUrl}user`;
-  const response = await api.get(url);
+  const response = await api.get(userPostUrl());
   return response;
 };
 
@@ -29,9 +42,7 @@ export const loginRequest = async (values) => {
       password,
     },
   };
-
-  const url = `${baseUrl}users/login`;
-  const response = await axios.post(url, data);
+  const response = await axios.post(userLoginUrl(), data);
   return response;
 };
 
@@ -44,58 +55,47 @@ export const signUpRequest = async (values) => {
       password,
     },
   };
-  const url = `${baseUrl}users`;
-  const response = await axios.post(url, data);
+  const response = await axios.post(userSignUpUrl(), data);
   return response;
 };
 
 /* like */
 export const addFavoriteRequest = async (slug) => {
-  const url = `${baseUrl}articles/${slug}/favorite`;
-  const response = await api.post(url);
-  console.log(response);
+  const response = await api.post(setFavoriteArticleUrl(slug));
   return response;
 };
 
 export const deleteFavoriteRequest = async (slug) => {
-  const url = `${baseUrl}articles/${slug}/favorite`;
-  const response = await api.delete(url);
+  const response = await api.delete(deleteFavoriteArticleUrl(slug));
   return response;
 };
 
 /* articles */
 export const getArticlesRequest = async (params) => {
-  // const { data } = params;
-  const url = `${baseUrl}articles?limit=10`;
-  const response = await api.get(url, { params });
+  const response = await api.get(getArticlesListUrl(), { params });
   return response.data;
 };
 
 /* article */
 export const getOneArticleRequest = async (slug) => {
-  const url = `${baseUrl}articles/${slug}`;
-  const response = api.get(url);
-  // console.log(response);
+  const response = api.get(getArticlePostUrl(slug));
   return response;
 };
 
 /* add article */
 export const addArticleRequest = async (values) => {
-  const url = `${baseUrl}articles`;
-  const response = await api.post(url, values);
+  const response = await api.post(addArticlePostUrl(), values);
   return response;
 };
 
 /* edit article */
 export const editArticleRequest = async (values, slug) => {
-  const url = `${baseUrl}articles/${slug}`;
-  const response = await api.put(url, values);
+  const response = await api.put(articleEditUrl(slug), values);
   return response;
 };
 
 /* delete article */
 export const deleteArticleRequest = async (slug) => {
-  const url = `${baseUrl}articles/${slug}`;
-  const response = await api.delete(url);
+  const response = await api.delete(articleDeleteUrl(slug));
   return response;
 };
