@@ -2,14 +2,14 @@ import { notification } from 'antd';
 
 export const openNotificationError = (type) => {
   notification[type]({
-    message: 'Notification Title',
-    description: 'Неполадки с сетью :(',
+    message: 'Неполадки с сетью',
+    description: ':(',
   });
 };
 
 export const openNotificationSuccess = (type) => {
   notification[type]({
-    message: 'Notification Title',
-    description: 'Вы успешно зарегистрировались :)',
+    message: 'Вы успешно зарегистрировались',
+    description: ':)',
   });
 };

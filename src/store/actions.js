@@ -92,12 +92,10 @@ export const setFavoriteArticle = (slug) => async (dispatch) => {
   try {
     const response = await addFavoriteRequest(slug);
     dispatch(setFavoriteSuccess(response.data));
-    console.log(response.data);
-    // if (!response) {
-    //   throw new Error('no');
-    // }
+    throw new Error(response);
   } catch (error) {
     dispatch(setFavoriteFailure(error.response));
+    console.log(error.response);
   }
 };
 

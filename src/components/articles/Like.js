@@ -10,14 +10,12 @@ const Like = ({ article }) => {
   const dispatch = useDispatch();
   const { favorited, slug } = article;
 
-  const setLike = () => {
+  const setLike = async () => {
     try {
       dispatch(setFavoriteArticle(slug));
       dispatch(isInactive()); // делаем активным логин
-      // if (response) {
-      //   throw console.log('no');
-      // }
     } catch (error) {
+      console.log(error.response);
       history.push('/login');
     }
   };

@@ -25,10 +25,14 @@ const SignUp = () => {
   const onSubmit = async (values) => {
     try {
       dispatch(isActive());
-      dispatch(logAction(values));
-      await signUpRequest(values);
+      const request = await signUpRequest(values);
+
+      if (request.status === 200) {
+        dispatch(logAction(values));
+        openNotificationSuccess('success');
+      }
+
       history.push('/');
-      openNotificationSuccess('success');
     } catch (error) {
       if (error.request.status === 422) {
         dispatch(isInactive());
