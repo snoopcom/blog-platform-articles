@@ -37,7 +37,7 @@ const Login = () => {
       const { token } = response.data.user;
       localStorage.setItem('token', `${token}`);
       // сделал, чтобы при удалении стореджа и перезагрузке страницы не вылетало со страницы main
-      localStorage.setItem('user', JSON.stringify(response.data.user));
+      // localStorage.setItem('user', JSON.stringify(response.data.user));
       history.push('/');
     } catch (error) {
       if (error.request.status === 422) {

@@ -72,7 +72,7 @@ export const getUser = () => async (dispatch) => {
   const response = await userRequest();
   dispatch(userData(response.data.user));
   // console.log(response.data.user);
-  localStorage.setItem('user', JSON.stringify(response.data.user));
+  // localStorage.setItem('user', JSON.stringify(response.data.user));
   return response;
 };
 

@@ -9,26 +9,8 @@ import logoUser from '../../img/logoUser.png';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const userReducer = useSelector((state) => state.userReducer);
-  // const buttonReducer = useSelector((state) => state.buttonReducer);
-
-  let { email } = userReducer;
-  let data;
-
-  /* проверка на авторизацию */
-  let isLogged = !userReducer.email;
-
-  try {
-    data = JSON.parse(localStorage.getItem('user'));
-    if (email === undefined) {
-      email = data.email;
-      isLogged = false;
-    }
-  } catch (error) {
-    if (data === null) {
-      console.log(error);
-    }
-  }
+  const userData = useSelector((state) => state.dataUserReducer);
+  const { loggedIn } = userData;
 
   const handleSignUp = () => {
     dispatch(isInactive());
@@ -72,7 +54,7 @@ const Header = () => {
           Create Article
         </Link>
       </Item>
-      <Item>{email}</Item>
+      <Item>{userData.username}</Item>
       <Item>
         <LogoUser src={logoUser} alt="logo user" />
       </Item>
@@ -89,7 +71,7 @@ const Header = () => {
       <ListHome>
         <NavLink to="/">Realworld Blog</NavLink>
       </ListHome>
-      <ListNavbar>{isLogged ? navbar : userProfile}</ListNavbar>
+      <ListNavbar>{loggedIn ? userProfile : navbar}</ListNavbar>
     </Wrapper>
   );
 };
