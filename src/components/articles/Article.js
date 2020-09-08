@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { Button, Popconfirm } from 'antd';
+import _ from 'lodash';
 import Like from './Like';
 import { deleteArticleAction } from '../../store/actions';
 import {
@@ -94,7 +95,7 @@ const Article = () => {
         <Description>{description}</Description>
         <TagContainer>
           {tagList.map((tag) => (
-            <Tag key={slug}>{tag}</Tag>
+            <Tag key={_.uniqueId()}>{tag}</Tag>
           ))}
         </TagContainer>
         <BodyContainer>{body}</BodyContainer>

@@ -3,6 +3,8 @@ import { formatDistance } from 'date-fns';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import _ from 'lodash';
+
 import {
   ContainerArticles,
   ArticleContainer,
@@ -56,7 +58,7 @@ const ListArticles = ({ article }) => {
       <Description>{description}</Description>
       <TagContainer>
         {tagList.map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
+          <Tag key={_.uniqueId()}>{tag}</Tag>
         ))}
       </TagContainer>
     </ContainerArticles>

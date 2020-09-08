@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { FileAddOutlined, TagOutlined, DeleteOutlined } from '@ant-design/icons';
+// import _ from 'lodash';
 import {
   Form, Input, Table, SubmitButton, AddRowButton, RemoveRowButton,
 } from 'formik-antd';
@@ -73,6 +74,7 @@ const EditArticle = () => {
           </InputContainer>
           <InputContainer>
             <Table
+              key={slug}
               name="tagList"
               rowKey={(row) => `${row.id}`}
               size="small"
@@ -84,6 +86,7 @@ const EditArticle = () => {
                   render: (text, record, i) => (
                     <div>
                       <Input
+                        key={slug}
                         name={`tagList[${i}]`}
                         placeholder="tag"
                         size="large"
@@ -91,7 +94,9 @@ const EditArticle = () => {
                         autoFocus
                       />
                       <div>
-                        <RemoveRowButton name="tagList" icon={<DeleteOutlined />} index={text} />
+                        {i === 0 ? null : (
+                          <RemoveRowButton name="tagList" icon={<DeleteOutlined />} index={i} />
+                        )}
                       </div>
                     </div>
                   ),

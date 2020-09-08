@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Form, Input, Table, SubmitButton, AddRowButton, RemoveRowButton,
@@ -28,6 +29,7 @@ const CreateArticle = () => {
   const buttonReducer = useSelector((state) => state.buttonReducer);
   const dispatch = useDispatch();
   const history = useHistory();
+  const { slug } = useParams();
 
   const handleSubmit = async (values) => {
     dispatch(isActive());
@@ -86,6 +88,7 @@ const CreateArticle = () => {
                   render: (text, record, i) => (
                     <div>
                       <Input
+                        key={slug}
                         name={`tagList[${i}]`}
                         placeholder="tag"
                         size="large"
