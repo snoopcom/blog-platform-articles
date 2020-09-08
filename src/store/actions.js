@@ -30,6 +30,7 @@ export const loadAllArticles = createAction('LOAD_ARTICLES_LIST');
 export const setLikeArticle = createAction('SET_LIKE_ARTICLE');
 export const unsetLikeArticle = createAction('SET_LIKE_ARTICLE');
 export const setCurrentPage = createAction('SET_CURRENT_PAGE');
+export const editArticle = createAction('EDIT_ARTICLE');
 
 /* like */
 export const setFavoriteRequest = createAction('SET_FAVORITE_REQUEST');
@@ -123,9 +124,9 @@ export const addOneArticleAction = async (slug) => {
 };
 
 /* edit article */
-export const editArticleAction = async (values, slug) => {
+export const editArticleAction = async (article, slug) => {
   try {
-    await editArticleRequest(values, slug);
+    await editArticleRequest({ article }, slug);
   } catch (error) {
     console.log(error);
   }

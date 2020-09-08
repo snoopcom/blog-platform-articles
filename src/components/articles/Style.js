@@ -111,6 +111,7 @@ export const Tag = styled.span`
   padding: 0 10px;
   border-radius: 5px;
   border: 2px solid #37374b;
+  width: 180px;
   font-size: 17px;
   margin-right: 10px;
   color: #37374b;

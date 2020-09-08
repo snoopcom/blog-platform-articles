@@ -7,7 +7,15 @@ import {
 } from 'formik-antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import Container from './Style';
+import {
+  Container,
+  InputContainer,
+  ButtonContainer,
+  RequiredStar,
+  SubmitButtonContainer,
+  Title,
+} from '../createArticle/Style';
+import validationSchema from './ValidationSchema';
 import { editArticleAction, isActive } from '../../store/actions';
 
 const EditArticle = () => {
@@ -26,29 +34,44 @@ const EditArticle = () => {
   };
 
   return (
-    <Container>
-      <Formik initialValues={currentArticle} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={currentArticle}
+      onSubmit={handleSubmit}
+      validationSchema={validationSchema}
+    >
+      <Container>
         <Form>
-          <h1>Редактирование Статьи</h1>
-          <div>
-            <label htmlFor="title">title</label>
+          <Title>
+            <h1>Редактирование статьи</h1>
+          </Title>
+          <InputContainer>
+            <label htmlFor="title">
+              title
+              <RequiredStar> *</RequiredStar>
+            </label>
             <Form.Item name="title">
               <Input id="title" name="title" placeholder="title" size="large" />
             </Form.Item>
-          </div>
-          <div>
-            <label htmlFor="description">description</label>
+          </InputContainer>
+          <InputContainer>
+            <label htmlFor="description">
+              description
+              <RequiredStar> *</RequiredStar>
+            </label>
             <Form.Item name="description">
               <Input id="description" name="description" placeholder="description" size="large" />
             </Form.Item>
-          </div>
-          <div>
-            <label htmlFor="body">body</label>
+          </InputContainer>
+          <InputContainer>
+            <label htmlFor="body">
+              body
+              <RequiredStar> *</RequiredStar>
+            </label>
             <Form.Item name="body">
               <Input.TextArea id="body" name="body" placeholder="your text" size="large" />
             </Form.Item>
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <Table
               name="tagList"
               rowKey={(row) => `${row.id}`}
@@ -68,14 +91,14 @@ const EditArticle = () => {
                         autoFocus
                       />
                       <div>
-                        <RemoveRowButton name="tagList" icon={<DeleteOutlined />} index={i} />
+                        <RemoveRowButton name="tagList" icon={<DeleteOutlined />} index={text} />
                       </div>
                     </div>
                   ),
                 },
               ]}
             />
-            <div>
+            <ButtonContainer>
               <AddRowButton
                 name="tagList"
                 createNewRow={() => ''}
@@ -86,9 +109,10 @@ const EditArticle = () => {
               >
                 Add tag
               </AddRowButton>
-            </div>
-          </div>
-          <div>
+            </ButtonContainer>
+          </InputContainer>
+          <SubmitButtonContainer>
+            <br />
             <SubmitButton
               disabled={buttonReducer}
               htmlType="submit"
@@ -97,12 +121,12 @@ const EditArticle = () => {
               block="true"
               icon={<FileAddOutlined />}
             >
-              Save article
+              Send
             </SubmitButton>
-          </div>
+          </SubmitButtonContainer>
         </Form>
-      </Formik>
-    </Container>
+      </Container>
+    </Formik>
   );
 };
 

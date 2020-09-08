@@ -29,7 +29,7 @@ const CreateArticle = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const articleSubmit = async (values) => {
+  const handleSubmit = async (values) => {
     dispatch(isActive());
     await addArticleAction(values);
     history.push('/');
@@ -38,7 +38,7 @@ const CreateArticle = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={articleSubmit}
+      onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
       <Container>
