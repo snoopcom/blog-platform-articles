@@ -1,12 +1,14 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { HeartTwoTone } from '@ant-design/icons';
 import { setFavoriteArticle, unsetFavoriteArticle, isInactive } from '../../store/actions';
+// import history from '../../history';
 
 const Like = ({ article }) => {
   const history = useHistory();
+  const user = useSelector((state) => state.dataUserReducer);
   const dispatch = useDispatch();
   const { favorited, slug } = article;
 
@@ -14,8 +16,10 @@ const Like = ({ article }) => {
     try {
       dispatch(setFavoriteArticle(slug));
       dispatch(isInactive()); // делаем активным логин
+      if (!user.id) {
+        throw new Error('Пользователь не залогинен');
+      }
     } catch (error) {
-      console.log(error.response);
       history.push('/login');
     }
   };

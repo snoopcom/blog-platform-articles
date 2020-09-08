@@ -27,7 +27,7 @@ const Articles = () => {
       dispatch(changePageAction(page));
       dispatch(getArticles({ offset: (page - 1) * pageSize }));
     } catch (error) {
-      console.log('hellt');
+      // console.log('hellt');
     }
   };
 
