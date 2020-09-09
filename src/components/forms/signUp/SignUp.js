@@ -4,7 +4,11 @@ import { Form, Input, SubmitButton } from 'formik-antd';
 import { MailOutlined, UserOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { openNotificationError, openNotificationSuccess } from '../../../api/openNotification';
+import {
+  openNotificationError,
+  openNotificationSuccess,
+  openNotificationInfo,
+} from '../../../api/openNotification';
 import { signUpRequest } from '../../../api/index';
 import validationSchema from './ValidationSchema';
 import { isActive, logAction, isInactive } from '../../../store/actions';
@@ -18,7 +22,7 @@ const initialValues = {
 };
 
 const SignUp = () => {
-  const buttonReducer = useSelector((state) => state.buttonReducer);
+  const isAtiveButton = useSelector((state) => state.buttonReducer);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -36,7 +40,7 @@ const SignUp = () => {
     } catch (error) {
       if (error.request.status === 422) {
         dispatch(isInactive());
-        alert('Такой пользователь уже существует');
+        openNotificationInfo('info');
       }
       if (error.request.status === 0) {
         dispatch(isInactive());
@@ -95,7 +99,7 @@ const SignUp = () => {
             </Form.Item>
           </div>
           <div className="formButtonsContainer">
-            <SubmitButton loading={false} disabled={buttonReducer} size="large" className="button">
+            <SubmitButton loading={false} disabled={isAtiveButton} size="large" className="button">
               Зарегистрироваться
             </SubmitButton>
           </div>

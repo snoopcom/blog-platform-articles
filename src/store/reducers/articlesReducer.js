@@ -19,11 +19,6 @@ const articlesReducer = handleActions(
       articlesCount,
     }),
     [actions.articlesFailure]: (state) => ({ ...state, articles: [] }),
-    // [actions.setArticlesParams]: (state, { payload: { params } }) => {
-    //   console.log(params);
-    //   return { ...state, params }
-    // },
-    // ({ ...state, params }),
 
     /* поствавить/убрать лайк */
     [actions.setFavoriteSuccess]: (state, { payload: { article: newItem } }) => {
@@ -34,10 +29,6 @@ const articlesReducer = handleActions(
       const articles = state.articles.map((item) => (item.slug === newItem.slug ? newItem : item));
       return { ...state, articles };
     },
-    // [actions.setCurrentPage]: (state, { payload }) => {
-    //  console.log({ payload });
-    //   // state.currentPage = payload;
-    // },
   },
   initialState,
 );

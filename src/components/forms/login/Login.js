@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import { Form, Input, SubmitButton } from 'formik-antd';
 import { MailOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { openNotificationError } from '../../../api/openNotification';
+import { openNotificationError, openNotificationWarning } from '../../../api/openNotification';
 import {
   authorization, logAction, isActive, isInactive, userData,
 } from '../../../store/actions';
@@ -18,11 +18,9 @@ const initialValues = {
 };
 
 const Login = () => {
-  const buttonReducer = useSelector((state) => state.buttonReducer);
-  // const dataUserReducer = useSelector((state) => state.dataUserReducer);
+  const isAtiveButton = useSelector((state) => state.buttonReducer);
   const dispatch = useDispatch();
   const history = useHistory();
-  // const { username } = dataUserReducer;
 
   const onSubmit = async (values) => {
     try {
@@ -36,13 +34,11 @@ const Login = () => {
 
       const { token } = response.data.user;
       localStorage.setItem('token', `${token}`);
-      // сделал, чтобы при удалении стореджа и перезагрузке страницы не вылетало со страницы main
-      // localStorage.setItem('user', JSON.stringify(response.data.user));
       history.push('/');
     } catch (error) {
       if (error.request.status === 422) {
         dispatch(isInactive());
-        alert('Неверный логин или пароль');
+        openNotificationWarning('warning');
       }
       if (error.request.status === 0) {
         dispatch(isInactive());
@@ -92,7 +88,7 @@ const Login = () => {
           </div>
           <div className="formButtonsContainer">
             <SubmitButton
-              disabled={buttonReducer}
+              disabled={isAtiveButton}
               htmlType="submit"
               size="large"
               className="button"

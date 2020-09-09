@@ -13,3 +13,17 @@ export const openNotificationSuccess = (type) => {
     description: 'Вы успешно зарегистрировались :)',
   });
 };
+
+export const openNotificationWarning = (type) => {
+  notification[type]({
+    message: 'Warning',
+    description: 'Неверная почта или пароль :|',
+  });
+};
+
+export const openNotificationInfo = (type) => {
+  notification[type]({
+    message: 'Info',
+    description: 'Такой пользователь уже существует',
+  });
+};

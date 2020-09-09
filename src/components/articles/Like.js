@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { HeartTwoTone } from '@ant-design/icons';
 import { setFavoriteArticle, unsetFavoriteArticle, isInactive } from '../../store/actions';
-// import history from '../../history';
 
 const Like = ({ article }) => {
   const history = useHistory();

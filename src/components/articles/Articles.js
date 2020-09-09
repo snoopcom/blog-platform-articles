@@ -23,12 +23,8 @@ const Articles = () => {
 
   /* пагинация */
   const handlePage = (page) => {
-    try {
-      dispatch(changePageAction(page));
-      dispatch(getArticles({ offset: (page - 1) * pageSize }));
-    } catch (error) {
-      // console.log('hellt');
-    }
+    dispatch(changePageAction(page));
+    dispatch(getArticles({ offset: (page - 1) * pageSize }));
   };
 
   const list = articles.map((article) => <ListArticles key={article.slug} article={article} />);

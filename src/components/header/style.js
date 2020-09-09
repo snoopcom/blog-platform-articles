@@ -21,7 +21,6 @@ export const List = styled.ul`
   padding-right: 30px;
   padding-top: 20px;
   list-style: none;
-  /* border: 1px red solid; */
   height: 80px;
 `;
 
@@ -29,7 +28,6 @@ export const Item = styled.li`
   margin-right: 47px;
   font-size: 20px;
   height: 40px;
-  /* border: 1px red solid; */
 `;
 
 export const LogoUser = styled.img`
