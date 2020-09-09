@@ -8,7 +8,6 @@ import Article from '../articles/Article';
 import Articles from '../articles/Articles';
 import CreateArticle from '../createArticle/CreateArticle';
 import EditArticle from '../editArticle/EditArticle';
-import CreateTest from '../test/CreateTest';
 import { getUser } from '../../store/actions';
 
 const App = () => {
@@ -33,7 +32,6 @@ const App = () => {
       <Route path="/add" component={CreateArticle} />
       <Route path="/signUp" exact component={SignUp} />
       <Route path="/login" exact component={Login} />
-      <Route path="/test" exact component={CreateTest} />
     </HashRouter>
   );
 };

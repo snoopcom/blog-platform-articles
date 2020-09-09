@@ -2,7 +2,6 @@ import React from 'react';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { FileAddOutlined, TagOutlined, DeleteOutlined } from '@ant-design/icons';
-// import _ from 'lodash';
 import {
   Form, Input, Table, SubmitButton, AddRowButton, RemoveRowButton,
 } from 'formik-antd';
@@ -84,7 +83,7 @@ const EditArticle = () => {
                   title: 'Tags',
                   key: 'tag',
                   render: (text, record, i) => (
-                    <div>
+                    <div key={slug}>
                       <Input
                         key={slug}
                         name={`tagList[${i}]`}

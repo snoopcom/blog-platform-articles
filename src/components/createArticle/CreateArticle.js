@@ -87,14 +87,15 @@ const CreateArticle = () => {
                   key: 'tag',
                   render: (text, record, i) => (
                     <div>
-                      <Input
-                        key={slug}
-                        name={`tagList[${i}]`}
-                        placeholder="tag"
-                        size="large"
-                        suffix={<TagOutlined />}
-                        autoFocus
-                      />
+                      <div key={slug}>
+                        <Input
+                          name={`tagList[${i}]`}
+                          placeholder="tag"
+                          size="large"
+                          suffix={<TagOutlined />}
+                          autoFocus
+                        />
+                      </div>
                       <div>
                         <RemoveRowButton name="tagList" icon={<DeleteOutlined />} index={i} />
                       </div>
