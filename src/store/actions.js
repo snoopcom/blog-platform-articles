@@ -109,11 +109,6 @@ export const unsetFavoriteArticle = (slug) => async (dispatch) => {
   }
 };
 
-/* add article */
-export const addArticleAction = async (article) => {
-  await addArticleRequest({ article });
-};
-
 /* get one article */
 export const addOneArticleAction = async (slug) => {
   try {
@@ -123,13 +118,14 @@ export const addOneArticleAction = async (slug) => {
   }
 };
 
+/* add article */
+export const addArticleAction = async (article) => {
+  await addArticleRequest({ article });
+};
+
 /* edit article */
 export const editArticleAction = async (article, slug) => {
-  try {
-    await editArticleRequest({ article }, slug);
-  } catch (error) {
-    console.log(error);
-  }
+  await editArticleRequest({ article }, slug);
 };
 
 /* delete article */

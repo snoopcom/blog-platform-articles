@@ -17,6 +17,7 @@ import {
   SubmitButtonContainer,
   Title,
 } from './Style';
+import HocFormComponent from '../hoc/HocFormComponent';
 
 const initialValues = {
   title: '',
@@ -136,4 +137,6 @@ const CreateArticle = () => {
   );
 };
 
-export default CreateArticle;
+const ArticleForm = HocFormComponent(CreateArticle);
+
+export default ArticleForm;
