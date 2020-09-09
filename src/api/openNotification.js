@@ -17,7 +17,7 @@ export const openNotificationSuccess = (type) => {
 export const openNotificationWarning = (type) => {
   notification[type]({
     message: 'Warning',
-    description: 'Неверная почта или пароль :|',
+    description: 'Неверный адрес email или пароль :|',
   });
 };
 
