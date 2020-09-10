@@ -6,9 +6,8 @@ import SignUp from '../forms/signUp/SignUp';
 import Header from '../header/header';
 import Article from '../articles/Article';
 import Articles from '../articles/Articles';
-import CreateArticle from '../createArticle/CreateArticle';
-import EditArticle from '../editArticle/EditArticle';
 import { getUser } from '../../store/actions';
+import FormArticle from '../hoc/FormArticle';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,10 +27,10 @@ const App = () => {
       <Route path="/" component={Header} />
       <Route path="/" exact component={Articles} />
       <Route path="/articles/:slug" exact component={Article} />
-      <Route path="/articles/:slug/edit" exact component={EditArticle} />
-      <Route path="/add" component={CreateArticle} />
+      <Route path="/add" component={FormArticle} />
       <Route path="/signUp" exact component={SignUp} />
       <Route path="/login" exact component={Login} />
+      <Route path="/articles/:slug/edit" exact component={FormArticle} />
     </HashRouter>
   );
 };

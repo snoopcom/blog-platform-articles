@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   width: 500px;
-
   background-color: #fff;
   border-radius: 5px;
   margin: 0 auto;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), -23px 0 40px -23px rgba(0, 0, 0, 0.8),
+    23px 0 40px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 `;
 
 export const InputContainer = styled.div`
@@ -29,7 +30,8 @@ export const RequiredStar = styled.span`
   color: red;
 `;
 
-export const Title = styled.div`
+export const Title = styled.span`
+  padding-top: 10px;
   display: flex;
-  padding-left: 90px;
+  justify-content: center;
 `;

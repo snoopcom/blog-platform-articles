@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { FileAddOutlined, TagOutlined, DeleteOutlined } from '@ant-design/icons';
 import {
@@ -8,42 +9,58 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import {
-  Container,
   InputContainer,
   ButtonContainer,
   RequiredStar,
   SubmitButtonContainer,
   Title,
-} from '../createArticle/Style';
+} from './Style';
 import validationSchema from './ValidationSchema';
-import { editArticleAction, isActive } from '../../store/actions';
+import { editArticleAction, isActive, addArticleAction } from '../../store/actions';
+import FormComponent from './FormComponent';
 
-const EditArticle = () => {
+const initialValues = {
+  title: '',
+  description: '',
+  body: '',
+  tagList: [],
+};
+
+const FormArticle = ({ currentArticle }) => {
   const dispatch = useDispatch();
   const { slug } = useParams();
-  const buttonReducer = useSelector((state) => state.buttonReducer);
-  const articlesReducer = useSelector((state) => state.articlesReducer);
-  const { articles } = articlesReducer;
-  const currentArticle = articles.find((article) => article.slug === slug);
+  const isAtiveButton = useSelector((state) => state.buttonReducer);
+
   const history = useHistory();
 
   const handleSubmit = async (values) => {
     dispatch(isActive());
-    await editArticleAction(values, slug);
+
+    if (currentArticle) {
+      await editArticleAction(values, slug);
+    }
+    if (!currentArticle) {
+      await addArticleAction(values);
+    }
+
     history.push('/');
   };
 
+  const TitleForm = currentArticle ? 'Редактировать статью' : 'Cоздать статью';
+
   return (
     <Formik
-      initialValues={currentArticle}
+      initialValues={currentArticle || initialValues}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <Container>
+      <div>
         <Form>
-          <Title>
-            <h1>Редактирование статьи</h1>
-          </Title>
+          <div>
+            <h1>
+              <Title>{TitleForm}</Title>
+            </h1>
+          </div>
           <InputContainer>
             <label htmlFor="title">
               title
@@ -118,7 +135,7 @@ const EditArticle = () => {
           <SubmitButtonContainer>
             <br />
             <SubmitButton
-              disabled={buttonReducer}
+              disabled={isAtiveButton}
               htmlType="submit"
               loading={false}
               size="large"
@@ -129,9 +146,15 @@ const EditArticle = () => {
             </SubmitButton>
           </SubmitButtonContainer>
         </Form>
-      </Container>
+      </div>
     </Formik>
   );
 };
 
-export default EditArticle;
+FormArticle.propTypes = {
+  currentArticle: PropTypes.instanceOf(Object).isRequired,
+};
+
+const CreateForm = FormComponent(FormArticle);
+
+export default CreateForm;
