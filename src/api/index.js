@@ -88,6 +88,7 @@ export const addArticleRequest = async (values) => {
 /* edit article */
 export const editArticleRequest = async (values, slug) => {
   const response = await api.put(articleEditUrl(slug), values);
+  console.log(response);
   return response;
 };
 
